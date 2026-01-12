@@ -1,66 +1,70 @@
 {
-  "name": "@wowoengine/sawitdb",
-  "publishConfig": {
-    "access": "public"
-  },
-  "version": "2.6.0",
-  "description": "A high-performance hybrid paged database with Agricultural Query Language (AQL) and Generic SQL support. Features single-file storage (.sawit), object caching, worker-thread parallelism, and crash recovery.",
-  "main": "src/WowoEngine.js",
-  "scripts": {
-    "start": "node bin/sawit-server.js",
-    "start:cluster": "set SAWIT_CLUSTER_MODE=true && node bin/sawit-server.js",
-    "server": "node bin/sawit-server.js",
-    "test": "node cli/test.js",
-    "example": "node examples/example_client.js",
-    "cli": "node cli/remote.js sawitdb://localhost:7878/default",
-    "dev": "set SAWIT_LOG_LEVEL=debug && node bin/sawit-server.js",
-    "bench": "node cli/benchmark.js --spawn --workers=1 --clients=1",
-    "bench:cluster": "node cli/benchmark.js --spawn --cluster --workers=4 --clients=10"
-  },
-  "keywords": [
-    "database",
-    "database-engine",
-    "database-server",
-    "database-client",
-    "database-remote",
-    "database-local",
-    "database-embedded",
-    "database-single-file",
-    "database-binary",
-    "database-file",
-    "sawitdb",
-    "wowoengine",
-    "wowoengine/sawitdb",
-    "document-database",
-    "nosql",
-    "json",
-    "btree",
-    "indexing",
-    "tcp-server",
-    "networking",
-    "agricultural",
-    "indonesian",
-    "mongodb-like",
-    "embedded-database"
-  ],
-  "author": "SawitDB Community",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WowoEngine/SawitDB.git"
-  },
-  "engines": {
-    "node": ">=12.0.0"
-  },
-  "bin": {
-    "sawitdb-server": "bin/sawit-server.js",
-    "sawitdb-cli": "cli/remote.js"
-  },
-  "files": [
-    "src/",
-    "bin/",
-    "cli/",
-    "docs/",
-    "README.md"
-  ]
+	"name": "@wowoengine/sawitdb",
+	"publishConfig": {
+		"access": "public"
+	},
+	"version": "2.6.0",
+	"description": "A high-performance hybrid paged database with Agricultural Query Language (AQL) and Generic SQL support. Features single-file storage (.sawit), object caching, worker-thread parallelism, and crash recovery.",
+	"main": "src/WowoEngine.js",
+	"scripts": {
+		"format": "prettier . -w",
+		"start": "node bin/sawit-server.js",
+		"start:cluster": "set SAWIT_CLUSTER_MODE=true && node bin/sawit-server.js",
+		"server": "node bin/sawit-server.js",
+		"test": "node cli/test.js",
+		"example": "node examples/example_client.js",
+		"cli": "node cli/remote.js sawitdb://localhost:7878/default",
+		"dev": "set SAWIT_LOG_LEVEL=debug && node bin/sawit-server.js",
+		"bench": "node cli/benchmark.js --spawn --workers=1 --clients=1",
+		"bench:cluster": "node cli/benchmark.js --spawn --cluster --workers=4 --clients=10"
+	},
+	"keywords": [
+		"database",
+		"database-engine",
+		"database-server",
+		"database-client",
+		"database-remote",
+		"database-local",
+		"database-embedded",
+		"database-single-file",
+		"database-binary",
+		"database-file",
+		"sawitdb",
+		"wowoengine",
+		"wowoengine/sawitdb",
+		"document-database",
+		"nosql",
+		"json",
+		"btree",
+		"indexing",
+		"tcp-server",
+		"networking",
+		"agricultural",
+		"indonesian",
+		"mongodb-like",
+		"embedded-database"
+	],
+	"author": "SawitDB Community",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WowoEngine/SawitDB.git"
+	},
+	"engines": {
+		"node": ">=12.0.0"
+	},
+	"bin": {
+		"sawitdb-server": "bin/sawit-server.js",
+		"sawitdb-cli": "cli/remote.js"
+	},
+	"files": [
+		"src/",
+		"bin/",
+		"cli/",
+		"docs/",
+		"README.md"
+	],
+	"devDependencies": {
+		"prettier": "^3.7.4"
+	}
 }

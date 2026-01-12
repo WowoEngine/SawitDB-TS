@@ -1,907 +1,1918 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SawitDB - Documentation</title>
+		<meta
+			name="description"
+			content="SawitDB: The most agricultural database in the world. Feature-rich, single-file, and based on Indonesian wisdom."
+		/>
+		<meta
+			name="keywords"
+			content="sawitdb, database, nosql, indonesian, agricultural query language, nodejs, embedded database"
+		/>
+		<meta name="author" content="SawitDB Community" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SawitDB - Documentation</title>
-    <meta name="description"
-        content="SawitDB: The most agricultural database in the world. Feature-rich, single-file, and based on Indonesian wisdom.">
-    <meta name="keywords"
-        content="sawitdb, database, nosql, indonesian, agricultural query language, nodejs, embedded database">
-    <meta name="author" content="SawitDB Community">
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:url"
+			content="https://github.com/WowoEngine/SawitDB"
+		/>
+		<meta property="og:title" content="SawitDB - Documentation" />
+		<meta
+			property="og:description"
+			content="Database infrastruktur langit? No. Ini database infrastruktur darat. Hemat, kuat, dan merakyat."
+		/>
+		<meta
+			property="og:image"
+			content="https://raw.githubusercontent.com/WowoEngine/SawitDB/main/docs/sawitdb.jpg"
+		/>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://github.com/WowoEngine/SawitDB">
-    <meta property="og:title" content="SawitDB - Documentation">
-    <meta property="og:description"
-        content="Database infrastruktur langit? No. Ini database infrastruktur darat. Hemat, kuat, dan merakyat.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/WowoEngine/SawitDB/main/docs/sawitdb.jpg">
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta
+			property="twitter:url"
+			content="https://github.com/WowoEngine/SawitDB"
+		/>
+		<meta property="twitter:title" content="SawitDB - Documentation" />
+		<meta
+			property="twitter:description"
+			content="Database infrastruktur langit? No. Ini database infrastruktur darat. Hemat, kuat, dan merakyat."
+		/>
+		<meta
+			property="twitter:image"
+			content="https://raw.githubusercontent.com/WowoEngine/SawitDB/main/docs/sawitdb.jpg"
+		/>
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://github.com/WowoEngine/SawitDB">
-    <meta property="twitter:title" content="SawitDB - Documentation">
-    <meta property="twitter:description"
-        content="Database infrastruktur langit? No. Ini database infrastruktur darat. Hemat, kuat, dan merakyat.">
-    <meta property="twitter:image" content="https://raw.githubusercontent.com/WowoEngine/SawitDB/main/docs/sawitdb.jpg">
+		<!-- Tailwind CSS -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+				darkMode: "class",
+				theme: {
+					extend: {
+						colors: {
+							primary: "#3B82F6",
+							secondary: "#10B981",
+							dark: "#0f172a",
+							darker: "#020617",
+							card: "#1e293b",
+							sawit: {
+								50: "#f0fdf4",
+								100: "#dcfce7",
+								500: "#22c55e",
+								600: "#16a34a",
+								700: "#15803d",
+								800: "#166534",
+								900: "#14532d",
+							},
+						},
+						fontFamily: {
+							sans: ["Inter", "sans-serif"],
+						},
+					},
+				},
+			};
+		</script>
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Font Awesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3B82F6',
-                        secondary: '#10B981',
-                        dark: '#0f172a',
-                        darker: '#020617',
-                        card: '#1e293b',
-                        sawit: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		<style>
+			body {
+				font-family: "Inter", sans-serif;
+			}
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+			/* Global Scrollbar */
+			::-webkit-scrollbar {
+				width: 10px;
+			}
 
-        /* Global Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
+			::-webkit-scrollbar-track {
+				background: #020617;
+			}
 
-        ::-webkit-scrollbar-track {
-            background: #020617;
-        }
+			::-webkit-scrollbar-thumb {
+				background: #334155;
+				border-radius: 5px;
+			}
 
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 5px;
-        }
+			::-webkit-scrollbar-thumb:hover {
+				background: #475569;
+			}
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
+			.glass-card {
+				background: rgba(255, 255, 255, 0.03);
+				backdrop-filter: blur(16px);
+				border: 1px solid rgba(255, 255, 255, 0.05);
+				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+			}
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
+			/* Metric Grid Overlay */
+			.bg-grid {
+				background-size: 40px 40px;
+				background-image:
+					linear-gradient(
+						to right,
+						rgba(255, 255, 255, 0.05) 1px,
+						transparent 1px
+					),
+					linear-gradient(
+						to bottom,
+						rgba(255, 255, 255, 0.05) 1px,
+						transparent 1px
+					);
+			}
 
-        /* Metric Grid Overlay */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        }
+			.bg-grid-mask {
+				mask-image: radial-gradient(
+					circle at center,
+					black,
+					transparent 80%
+				);
+				-webkit-mask-image: radial-gradient(
+					circle at center,
+					black,
+					transparent 80%
+				);
+			}
+		</style>
+	</head>
 
-        .bg-grid-mask {
-            mask-image: radial-gradient(circle at center, black, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
-        }
-    </style>
-</head>
+	<body
+		class="bg-darker text-white antialiased selection:bg-primary selection:text-white"
+	>
+		<!-- Mobile Navbar (WowoEngine Style) -->
+		<nav
+			class="lg:hidden fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-darker/80 backdrop-blur-xl"
+		>
+			<div
+				class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4"
+			>
+				<a
+					href="#"
+					class="flex items-center space-x-3 rtl:space-x-reverse group"
+				>
+					<span
+						class="self-center text-lg font-bold whitespace-nowrap bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text"
+						>SawitDB</span
+					>
+				</a>
+				<button
+					id="mobile-menu-btn"
+					data-collapse-toggle="navbar-default"
+					type="button"
+					class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-gray-600"
+					aria-controls="navbar-default"
+					aria-expanded="false"
+				>
+					<span class="sr-only">Open main menu</span>
+					<svg
+						class="w-5 h-5"
+						aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 17 14"
+					>
+						<path
+							stroke="currentColor"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M1 1h15M1 7h15M1 13h15"
+						/>
+					</svg>
+				</button>
+				<div class="hidden w-full" id="navbar-default">
+					<ul
+						class="font-medium flex flex-col p-4 mt-4 border border-white/5 rounded-lg bg-black/60 backdrop-blur-xl space-y-2"
+					>
+						<li>
+							<a
+								href="#intro"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>Introduction</a
+							>
+						</li>
+						<li>
+							<a
+								href="#features"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>Features</a
+							>
+						</li>
+						<li>
+							<a
+								href="#filosofi"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>Filosofi</a
+							>
+						</li>
+						<li>
+							<a
+								href="#installation"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>Installation</a
+							>
+						</li>
+						<li>
+							<a
+								href="#syntax"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>AQL Syntax</a
+							>
+						</li>
+						<li>
+							<a
+								href="#network"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>Network</a
+							>
+						</li>
+						<li>
+							<a
+								href="#client-api"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>Client API</a
+							>
+						</li>
+						<li>
+							<a
+								href="#cli"
+								class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all"
+								>CLI Tool</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-<body class="bg-darker text-white antialiased selection:bg-primary selection:text-white">
+		<div class="flex min-h-screen relative">
+			<!-- Background Effects -->
+			<div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
+				<div
+					class="absolute inset-0 bg-grid bg-grid-mask z-0 pointer-events-none"
+				></div>
+				<div
+					class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"
+				></div>
+				<!-- Blobs -->
+				<div
+					class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-green-500/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20"
+				></div>
+				<div
+					class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-emerald-500/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20"
+				></div>
+			</div>
 
-    <!-- Mobile Navbar (WowoEngine Style) -->
-    <nav class="lg:hidden fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-darker/80 backdrop-blur-xl">
-        <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse group">
-                <span
-                    class="self-center text-lg font-bold whitespace-nowrap bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text">SawitDB</span>
-            </a>
-            <button id="mobile-menu-btn" data-collapse-toggle="navbar-default" type="button"
-                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-gray-600"
-                aria-controls="navbar-default" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 1h15M1 7h15M1 13h15" />
-                </svg>
-            </button>
-            <div class="hidden w-full" id="navbar-default">
-                <ul
-                    class="font-medium flex flex-col p-4 mt-4 border border-white/5 rounded-lg bg-black/60 backdrop-blur-xl space-y-2">
-                    <li>
-                        <a href="#intro"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">Introduction</a>
-                    </li>
-                    <li>
-                        <a href="#features"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">Features</a>
-                    </li>
-                    <li>
-                        <a href="#filosofi"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">Filosofi</a>
-                    </li>
-                    <li>
-                        <a href="#installation"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">Installation</a>
-                    </li>
-                    <li>
-                        <a href="#syntax"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">AQL
-                            Syntax</a>
-                    </li>
-                    <li>
-                        <a href="#network"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">Network</a>
-                    </li>
-                    <li>
-                        <a href="#client-api"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">Client
-                            API</a>
-                    </li>
-                    <li>
-                        <a href="#cli"
-                            class="block py-2 px-3 text-gray-300 rounded hover:text-white hover:bg-white/5 transition-all">CLI
-                            Tool</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+			<!-- Desktop Sidebar -->
+			<aside
+				class="hidden lg:flex flex-col w-72 bg-black/40 backdrop-blur-xl border-r border-white/5 fixed h-screen overflow-y-auto z-30"
+			>
+				<div class="p-6 border-b border-white/5">
+					<h1
+						class="text-2xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text tracking-wide"
+					>
+						SawitDB
+					</h1>
+				</div>
 
-    <div class="flex min-h-screen relative">
-        <!-- Background Effects -->
-        <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
-            <div class="absolute inset-0 bg-grid bg-grid-mask z-0 pointer-events-none"></div>
-            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-            <!-- Blobs -->
-            <div
-                class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-green-500/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20">
-            </div>
-            <div
-                class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-emerald-500/20 rounded-full mix-blend-screen filter blur-[100px] opacity-20">
-            </div>
-        </div>
+				<nav class="flex-1 p-4 space-y-1">
+					<a
+						href="#intro"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						Introduction
+					</a>
+					<a
+						href="#features"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						Features
+					</a>
+					<a
+						href="#filosofi"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						Filosofi
+					</a>
+					<a
+						href="#installation"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						Installation
+					</a>
+					<a
+						href="#syntax"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						Query Syntax
+					</a>
+					<a
+						href="#network"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						Network
+					</a>
+					<a
+						href="#client-api"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						Client API
+					</a>
+					<a
+						href="#cli"
+						class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5"
+					>
+						CLI Tool
+					</a>
+				</nav>
 
-        <!-- Desktop Sidebar -->
-        <aside
-            class="hidden lg:flex flex-col w-72 bg-black/40 backdrop-blur-xl border-r border-white/5 fixed h-screen overflow-y-auto z-30">
-            <div class="p-6 border-b border-white/5">
-                <h1
-                    class="text-2xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text tracking-wide">
-                    SawitDB</h1>
-            </div>
+				<div class="p-6 border-t border-white/5">
+					<p class="text-xs text-gray-500">
+						&copy; 2026 SawitDB Core Team
+					</p>
+				</div>
+			</aside>
 
-            <nav class="flex-1 p-4 space-y-1">
-                <a href="#intro"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    Introduction
-                </a>
-                <a href="#features"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    Features
-                </a>
-                <a href="#filosofi"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    Filosofi
-                </a>
-                <a href="#installation"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    Installation
-                </a>
-                <a href="#syntax"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    Query Syntax
-                </a>
-                <a href="#network"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    Network
-                </a>
-                <a href="#client-api"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    Client API
-                </a>
-                <a href="#cli"
-                    class="flex items-center px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-lg transition-all group cursor-pointer border border-transparent hover:border-white/5">
-                    CLI Tool
-                </a>
-            </nav>
+			<!-- Main Content Area -->
+			<main
+				class="flex-1 lg:ml-72 px-4 py-8 lg:p-12 max-w-5xl mx-auto w-full overflow-x-hidden"
+			>
+				<!-- Intro Section -->
+				<section id="intro" class="mb-16 scroll-mt-24">
+					<h2
+						class="text-4xl font-extrabold text-white mb-6 border-b-4 border-green-500 inline-block pb-2"
+					>
+						Introduction
+					</h2>
+					<div
+						class="glass-card rounded-2xl p-8 hover:bg-white/5 transition-all"
+					>
+						<p class="text-lg leading-relaxed text-gray-300 mb-6">
+							<strong class="text-green-400">SawitDB</strong> is a
+							revolutionary database solution stored in single
+							<code
+								class="bg-red-500/10 text-red-400 px-2 py-1 rounded text-sm font-mono border border-red-500/20"
+								>.sawit</code
+							>
+							binary files. It combines the reliability of a Paged
+							Heap File architecture with the charm of localized
+							wisdom.
+						</p>
+						<p class="text-gray-300 leading-relaxed">
+							What differentiates SawitDB is its unique
+							<strong>Agricultural Query Language (AQL)</strong>,
+							which replaces standard SQL keywords with Indonesian
+							farming terminology, making database management as
+							intuitive as managing a plantation.
+						</p>
+					</div>
 
-            <div class="p-6 border-t border-white/5">
-                <p class="text-xs text-gray-500">&copy; 2026 SawitDB Core Team</p>
-            </div>
-        </aside>
+					<!-- Alert Box -->
+					<div
+						class="mt-8 bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl flex flex-col md:flex-row items-start md:items-center justify-between"
+					>
+						<div>
+							<h3 class="text-amber-400 font-bold text-lg mb-1">
+								🚨 Emergency: Aceh Flood Relief
+							</h3>
+							<p class="text-amber-200/80 text-sm">
+								Please support our brothers and sisters in Aceh.
+							</p>
+						</div>
+						<a
+							href="https://kitabisa.com/campaign/donasipedulibanjiraceh"
+							target="_blank"
+							class="mt-4 md:mt-0 inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm"
+						>
+							Donate via Kitabisa
+							<svg
+								class="ml-2 w-4 h-4"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+								></path>
+							</svg>
+						</a>
+					</div>
+				</section>
 
-        <!-- Main Content Area -->
-        <main class="flex-1 lg:ml-72 px-4 py-8 lg:p-12 max-w-5xl mx-auto w-full overflow-x-hidden">
+				<!-- Features -->
+				<section id="features" class="mb-16 scroll-mt-24">
+					<h2
+						class="text-3xl font-bold text-white mb-8 flex items-center"
+					>
+						Features
+					</h2>
+					<div class="grid md:grid-cols-2 gap-6">
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								Paged Architecture
+							</h3>
+							<p class="text-gray-400 text-sm">
+								Data stored in 4096-byte binary pages. Optimized
+								for low memory footprint.
+							</p>
+						</div>
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								Single File Storage
+							</h3>
+							<p class="text-gray-400 text-sm">
+								All data, schema, and indexes reside in a single
+								<code
+									class="bg-white/10 px-1 py-0.5 rounded text-gray-300"
+									>.sawit</code
+								>
+								file.
+							</p>
+						</div>
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								High Stability
+							</h3>
+							<p class="text-gray-400 text-sm">
+								Uses 4KB atomic pages. More stable than a
+								coalition government.
+							</p>
+						</div>
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								Anti-Korupsi Integrity
+							</h3>
+							<p class="text-gray-400 text-sm">
+								Strict
+								<code
+									class="bg-white/10 px-1 py-0.5 rounded text-gray-300"
+									>fsync</code
+								>
+								protocols ensure data is safe and never
+								"mysteriously disappears".
+							</p>
+						</div>
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								Crash Recovery
+							</h3>
+							<p class="text-gray-400 text-sm">
+								Powered by
+								<code
+									class="bg-white/10 px-1 py-0.5 rounded text-gray-300"
+									>Write-Ahead Logging (WAL)</code
+								>. Data guarantees to return. Unlike a fugitive
+								who is "hard to find".
+							</p>
+						</div>
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								Zero Bureaucracy
+							</h3>
+							<p class="text-gray-400 text-sm">
+								Pure Node.js. Zero dependencies. No "Vendor
+								Pengadaan" or markups.
+							</p>
+						</div>
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								True Multi-Threading
+							</h3>
+							<p class="text-gray-400 text-sm">
+								Worker Pool architecture separates IO from
+								Compute. High concurrency with auto-healing
+								workers.
+							</p>
+						</div>
+						<div
+							class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group"
+						>
+							<h3
+								class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300"
+							>
+								Transparansi
+							</h3>
+							<p class="text-gray-400 text-sm">
+								Clear query language. No "Pasal Karet"
+								(ambiguous laws).
+							</p>
+						</div>
+					</div>
+				</section>
 
-            <!-- Intro Section -->
-            <section id="intro" class="mb-16 scroll-mt-24">
-                <h2 class="text-4xl font-extrabold text-white mb-6 border-b-4 border-green-500 inline-block pb-2">
-                    Introduction</h2>
-                <div class="glass-card rounded-2xl p-8 hover:bg-white/5 transition-all">
-                    <p class="text-lg leading-relaxed text-gray-300 mb-6">
-                        <strong class="text-green-400">SawitDB</strong> is a revolutionary database solution stored in
-                        single <code
-                            class="bg-red-500/10 text-red-400 px-2 py-1 rounded text-sm font-mono border border-red-500/20">.sawit</code>
-                        binary files.
-                        It combines the reliability of a Paged Heap File architecture with the charm of localized
-                        wisdom.
-                    </p>
-                    <p class="text-gray-300 leading-relaxed">
-                        What differentiates SawitDB is its unique <strong>Agricultural Query Language (AQL)</strong>,
-                        which replaces standard SQL keywords with Indonesian farming terminology, making database
-                        management as intuitive as managing a plantation.
-                    </p>
-                </div>
+				<!-- Benchmarks -->
+				<section id="benchmarks" class="mb-16 scroll-mt-24">
+					<h2
+						class="text-3xl font-bold text-white mb-8 flex items-center"
+					>
+						Benchmark Performance
+					</h2>
+					<div class="glass-card rounded-xl overflow-hidden">
+						<div class="p-6 bg-white/5 border-b border-white/5">
+							<p class="text-sm text-gray-300">
+								<strong>Environment:</strong> Single Thread,
+								Windows Node.js (Local NVMe)
+							</p>
+						</div>
+						<div class="overflow-x-auto">
+							<table class="w-full text-sm text-left">
+								<thead
+									class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5"
+								>
+									<tr>
+										<th class="px-6 py-4 font-bold">
+											Operation
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Ops/Sec
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Latency (avg)
+										</th>
+									</tr>
+								</thead>
+								<tbody class="divide-y divide-white/5">
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											INSERT
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-bold"
+										>
+											~22,000
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											0.045 ms
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											SELECT (PK Index)
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-bold"
+										>
+											~247,288
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											0.004 ms
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											SELECT (Scan)
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-bold"
+										>
+											~13,200
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											0.075 ms
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											UPDATE (Indexed)
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-bold"
+										>
+											~11,000
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											0.090 ms
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											DELETE (Indexed)
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-bold"
+										>
+											~19,000
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											0.052 ms
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
 
-                <!-- Alert Box -->
-                <div
-                    class="mt-8 bg-amber-500/10 border-l-4 border-amber-500 p-6 rounded-r-xl flex flex-col md:flex-row items-start md:items-center justify-between">
-                    <div>
-                        <h3 class="text-amber-400 font-bold text-lg mb-1">🚨 Emergency: Aceh Flood Relief</h3>
-                        <p class="text-amber-200/80 text-sm">Please support our brothers and sisters in Aceh.</p>
-                    </div>
-                    <a href="https://kitabisa.com/campaign/donasipedulibanjiraceh" target="_blank"
-                        class="mt-4 md:mt-0 inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">
-                        Donate via Kitabisa
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </a>
-                </div>
-            </section>
+				<!-- Filosofi -->
+				<section id="filosofi" class="mb-16 scroll-mt-24">
+					<div
+						class="bg-gradient-to-br from-green-900/50 to-emerald-950/50 rounded-2xl p-8 md:p-12 text-white shadow-lg relative overflow-hidden border border-green-500/20 backdrop-blur-sm"
+					>
+						<div
+							class="absolute top-0 right-0 opacity-10 transform translate-x-10 -translate-y-10"
+						>
+							<svg
+								width="300"
+								height="300"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+							>
+								<path
+									d="M12 2L2 22h20L12 2zm0 3.5L18.5 20h-13L12 5.5z"
+								/>
+							</svg>
+						</div>
 
-            <!-- Features -->
-            <section id="features" class="mb-16 scroll-mt-24">
-                <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
-                    Features
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">Paged Architecture
-                        </h3>
-                        <p class="text-gray-400 text-sm">Data stored in 4096-byte binary pages. Optimized for low memory
-                            footprint.</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">Single File Storage
-                        </h3>
-                        <p class="text-gray-400 text-sm">All data, schema, and indexes reside in a single
-                            <code class="bg-white/10 px-1 py-0.5 rounded text-gray-300">.sawit</code> file.
-                        </p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">High Stability</h3>
-                        <p class="text-gray-400 text-sm">Uses 4KB atomic pages. More stable than a coalition government.
-                        </p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">Anti-Korupsi
-                            Integrity</h3>
-                        <p class="text-gray-400 text-sm">Strict <code
-                                class="bg-white/10 px-1 py-0.5 rounded text-gray-300">fsync</code> protocols ensure data
-                            is safe and
-                            never "mysteriously disappears".</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">Crash Recovery
-                        </h3>
-                        <p class="text-gray-400 text-sm">Powered by <code
-                                class="bg-white/10 px-1 py-0.5 rounded text-gray-300">Write-Ahead Logging (WAL)</code>.
-                            Data guarantees to
-                            return. Unlike a fugitive who is "hard to find".</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">Zero Bureaucracy
-                        </h3>
-                        <p class="text-gray-400 text-sm">Pure Node.js. Zero dependencies. No "Vendor Pengadaan" or
-                            markups.</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">True
-                            Multi-Threading</h3>
-                        <p class="text-gray-400 text-sm">Worker Pool architecture separates IO from Compute. High
-                            concurrency with auto-healing workers.</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-white/5 transition-all group">
-                        <h3 class="font-bold text-xl text-green-400 mb-2 group-hover:text-green-300">Transparansi</h3>
-                        <p class="text-gray-400 text-sm">Clear query language. No "Pasal Karet" (ambiguous laws).</p>
-                    </div>
-                </div>
-            </section>
+						<h2
+							class="text-3xl font-bold mb-8 border-b border-white/10 pb-4 inline-block"
+						>
+							Filosofi
+						</h2>
 
-            <!-- Benchmarks -->
-            <section id="benchmarks" class="mb-16 scroll-mt-24">
-                <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
-                    Benchmark Performance
-                </h2>
-                <div class="glass-card rounded-xl overflow-hidden">
-                    <div class="p-6 bg-white/5 border-b border-white/5">
-                        <p class="text-sm text-gray-300">
-                            <strong>Environment:</strong> Single Thread, Windows Node.js (Local NVMe)
-                        </p>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5">
-                                <tr>
-                                    <th class="px-6 py-4 font-bold">Operation</th>
-                                    <th class="px-6 py-4 font-bold">Ops/Sec</th>
-                                    <th class="px-6 py-4 font-bold">Latency (avg)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">INSERT</td>
-                                    <td class="px-6 py-4 text-green-400 font-bold">~22,000</td>
-                                    <td class="px-6 py-4 text-gray-400">0.045 ms</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">SELECT (PK Index)</td>
-                                    <td class="px-6 py-4 text-green-400 font-bold">~247,288</td>
-                                    <td class="px-6 py-4 text-gray-400">0.004 ms</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">SELECT (Scan)</td>
-                                    <td class="px-6 py-4 text-green-400 font-bold">~13,200</td>
-                                    <td class="px-6 py-4 text-gray-400">0.075 ms</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">UPDATE (Indexed)</td>
-                                    <td class="px-6 py-4 text-green-400 font-bold">~11,000</td>
-                                    <td class="px-6 py-4 text-gray-400">0.090 ms</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">DELETE (Indexed)</td>
-                                    <td class="px-6 py-4 text-green-400 font-bold">~19,000</td>
-                                    <td class="px-6 py-4 text-gray-400">0.052 ms</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
+						<div class="grid md:grid-cols-2 gap-10">
+							<div>
+								<h3
+									class="text-xl font-bold text-green-400 mb-4 flex items-center"
+								>
+									Filosofi (ID)
+								</h3>
+								<p
+									class="text-gray-300 leading-relaxed text-sm"
+								>
+									SawitDB dibangun dengan semangat
+									"Kemandirian Data". Kami percaya database
+									yang handal tidak butuh
+									<strong>Infrastruktur Langit</strong> yang
+									harganya triliunan tapi sering
+									<em>down</em>. Berbeda dengan proyek negara
+									yang mahal di <em>budget</em> tapi murah di
+									kualitas, SawitDB menggunakan arsitektur
+									<strong>Single File</strong> yang hemat
+									biaya.
+								</p>
+							</div>
+							<div>
+								<h3
+									class="text-xl font-bold text-green-400 mb-4 flex items-center"
+								>
+									Philosophy (EN)
+								</h3>
+								<p
+									class="text-gray-300 leading-relaxed text-sm"
+								>
+									SawitDB is built with the spirit of "Data
+									Sovereignty". We believe a reliable database
+									doesn't need
+									<strong>"Sky Infrastructure"</strong> that
+									costs trillions yet goes
+									<em>down</em> often. SawitDB uses a
+									cost-effective <strong>Single File</strong>
+									architecture. Data integrity is
+									non-negotiable.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
 
-            <!-- Filosofi -->
-            <section id="filosofi" class="mb-16 scroll-mt-24">
-                <div
-                    class="bg-gradient-to-br from-green-900/50 to-emerald-950/50 rounded-2xl p-8 md:p-12 text-white shadow-lg relative overflow-hidden border border-green-500/20 backdrop-blur-sm">
-                    <div class="absolute top-0 right-0 opacity-10 transform translate-x-10 -translate-y-10">
-                        <svg width="300" height="300" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L2 22h20L12 2zm0 3.5L18.5 20h-13L12 5.5z" />
-                        </svg>
-                    </div>
+				<!-- Installation -->
+				<section id="installation" class="mb-16 scroll-mt-24">
+					<h2
+						class="text-3xl font-bold text-white mb-8 flex items-center"
+					>
+						Installation
+					</h2>
 
-                    <h2 class="text-3xl font-bold mb-8 border-b border-white/10 pb-4 inline-block">Filosofi</h2>
+					<!-- Node.js Installation -->
+					<div class="mb-8">
+						<div class="flex items-center justify-between mb-4">
+							<h3
+								class="text-xl font-bold text-gray-200 flex items-center gap-2"
+							>
+								<i class="fab fa-node text-green-500"></i>
+								Node.js
+							</h3>
+							<a
+								href="https://www.npmjs.com/package/@wowoengine/sawitdb"
+								target="_blank"
+								class="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-gray-400 transition-colors"
+							>
+								details
+								<i class="fas fa-external-link-alt ml-1"></i>
+							</a>
+						</div>
+						<div
+							class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 relative group"
+						>
+							<div
+								class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+							>
+								<button
+									class="text-gray-400 hover:text-white text-xs"
+									onclick="
+										navigator.clipboard.writeText(
+											'npm install @wowoengine/sawitdb',
+										)
+									"
+								>
+									Copy
+								</button>
+							</div>
+							<code class="block font-mono text-sm text-gray-300">
+								<span class="text-green-400">npm</span> install
+								@wowoengine/sawitdb
+							</code>
+						</div>
+					</div>
 
-                    <div class="grid md:grid-cols-2 gap-10">
-                        <div>
-                            <h3 class="text-xl font-bold text-green-400 mb-4 flex items-center">Filosofi (ID)</h3>
-                            <p class="text-gray-300 leading-relaxed text-sm">
-                                SawitDB dibangun dengan semangat "Kemandirian Data". Kami percaya database yang handal
-                                tidak butuh <strong>Infrastruktur Langit</strong> yang harganya triliunan tapi sering
-                                <em>down</em>. Berbeda dengan proyek negara yang mahal di <em>budget</em> tapi murah di
-                                kualitas, SawitDB menggunakan arsitektur <strong>Single File</strong> yang hemat biaya.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-green-400 mb-4 flex items-center">Philosophy (EN)
-                            </h3>
-                            <p class="text-gray-300 leading-relaxed text-sm">
-                                SawitDB is built with the spirit of "Data Sovereignty". We believe a reliable database
-                                doesn't need <strong>"Sky Infrastructure"</strong> that costs trillions yet goes
-                                <em>down</em> often. SawitDB uses a cost-effective <strong>Single File</strong>
-                                architecture. Data integrity is non-negotiable.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+					<!-- PHP Installation -->
+					<div class="mb-12">
+						<div class="flex items-center justify-between mb-4">
+							<h3
+								class="text-xl font-bold text-gray-200 flex items-center gap-2"
+							>
+								<i class="fab fa-php text-indigo-400"></i> PHP
+							</h3>
+							<a
+								href="https://packagist.org/packages/wowoengine/sawitdb-php"
+								target="_blank"
+								class="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-gray-400 transition-colors"
+							>
+								details
+								<i class="fas fa-external-link-alt ml-1"></i>
+							</a>
+						</div>
+						<div
+							class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 relative group"
+						>
+							<div
+								class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+							>
+								<button
+									class="text-gray-400 hover:text-white text-xs"
+									onclick="
+										navigator.clipboard.writeText(
+											'composer require wowoengine/sawitdb-php',
+										)
+									"
+								>
+									Copy
+								</button>
+							</div>
+							<code class="block font-mono text-sm text-gray-300">
+								<span class="text-indigo-400">composer</span>
+								require wowoengine/sawitdb-php
+							</code>
+						</div>
+					</div>
 
-            <!-- Installation -->
-            <section id="installation" class="mb-16 scroll-mt-24">
-                <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
-                    Installation
-                </h2>
+					<div class="grid md:grid-cols-2 gap-8">
+						<!-- JS Initialization -->
+						<div>
+							<h4
+								class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-3"
+							>
+								Node.js Usage
+							</h4>
+							<div
+								class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 h-full"
+							>
+								<code class="font-mono text-sm text-gray-300">
+									<span class="text-purple-400">const</span>
+									SawitDB =
+									<span class="text-blue-400">require</span
+									>(<span class="text-green-300"
+										>'@wowoengine/sawitdb'</span
+									>);<br />
+									<span class="text-purple-400">const</span>
+									path =
+									<span class="text-blue-400">require</span
+									>(<span class="text-green-300">'path'</span
+									>);<br /><br />
+									<span class="text-gray-500"
+										>// Initialize</span
+									><br />
+									<span class="text-purple-400">const</span>
+									db =
+									<span class="text-purple-400">new</span>
+									<span class="text-yellow-300">SawitDB</span
+									>(<span class="text-green-300"
+										>'plantation.sawit'</span
+									>);
+								</code>
+							</div>
+						</div>
 
-                <!-- Node.js Installation -->
-                <div class="mb-8">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-gray-200 flex items-center gap-2">
-                            <i class="fab fa-node text-green-500"></i> Node.js
-                        </h3>
-                        <a href="https://www.npmjs.com/package/@wowoengine/sawitdb" target="_blank"
-                            class="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-gray-400 transition-colors">
-                            details <i class="fas fa-external-link-alt ml-1"></i>
-                        </a>
-                    </div>
-                    <div
-                        class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 relative group">
-                        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button class="text-gray-400 hover:text-white text-xs"
-                                onclick="navigator.clipboard.writeText('npm install @wowoengine/sawitdb')">Copy</button>
-                        </div>
-                        <code class="block font-mono text-sm text-gray-300">
-                            <span class="text-green-400">npm</span> install @wowoengine/sawitdb
-                        </code>
-                    </div>
-                </div>
+						<!-- PHP Initialization -->
+						<div>
+							<h4
+								class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-3"
+							>
+								PHP Usage
+							</h4>
+							<div
+								class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 h-full"
+							>
+								<code class="font-mono text-sm text-gray-300">
+									<span class="text-purple-400">use</span>
+									WowoEngine\SawitDB\SawitDB;<br /><br />
+									<span class="text-gray-500"
+										>// Initialize</span
+									><br />
+									<span class="text-purple-400">$db</span> =
+									<span class="text-purple-400">new</span>
+									<span class="text-yellow-300">SawitDB</span
+									>(<span class="text-green-300"
+										>'plantation.sawit'</span
+									>);
+								</code>
+							</div>
+						</div>
+					</div>
 
-                <!-- PHP Installation -->
-                <div class="mb-12">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold text-gray-200 flex items-center gap-2">
-                            <i class="fab fa-php text-indigo-400"></i> PHP
-                        </h3>
-                        <a href="https://packagist.org/packages/wowoengine/sawitdb-php" target="_blank"
-                            class="text-xs bg-white/10 hover:bg-white/20 px-2 py-1 rounded text-gray-400 transition-colors">
-                            details <i class="fas fa-external-link-alt ml-1"></i>
-                        </a>
-                    </div>
-                    <div
-                        class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 relative group">
-                        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button class="text-gray-400 hover:text-white text-xs"
-                                onclick="navigator.clipboard.writeText('composer require wowoengine/sawitdb-php')">Copy</button>
-                        </div>
-                        <code class="block font-mono text-sm text-gray-300">
-                            <span class="text-indigo-400">composer</span> require wowoengine/sawitdb-php
-                        </code>
-                    </div>
-                </div>
+					<!-- Source Installation (Collapsible or Footnote) -->
+					<div class="mt-8 pt-8 border-t border-white/5">
+						<details class="text-gray-400 cursor-pointer group">
+							<summary
+								class="hover:text-white transition-colors text-sm font-medium"
+							>
+								Build from Source (Git)
+							</summary>
+							<div
+								class="mt-4 bg-black/50 rounded-xl p-4 border border-white/10"
+							>
+								<code
+									class="block font-mono text-sm text-gray-300"
+								>
+									git clone
+									https://github.com/WowoEngine/SawitDB.git<br />
+									cd SawitDB && npm install
+								</code>
+							</div>
+						</details>
+					</div>
+				</section>
 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- JS Initialization -->
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-3">Node.js Usage</h4>
-                        <div class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 h-full">
-                            <code class="font-mono text-sm text-gray-300">
-                                <span class="text-purple-400">const</span> SawitDB = <span class="text-blue-400">require</span>(<span class="text-green-300">'@wowoengine/sawitdb'</span>);<br>
-                                <span class="text-purple-400">const</span> path = <span class="text-blue-400">require</span>(<span class="text-green-300">'path'</span>);<br><br>
-                                <span class="text-gray-500">// Initialize</span><br>
-                                <span class="text-purple-400">const</span> db = <span class="text-purple-400">new</span> <span class="text-yellow-300">SawitDB</span>(<span class="text-green-300">'plantation.sawit'</span>);
-                            </code>
-                        </div>
-                    </div>
+				<!-- Syntax -->
+				<section id="syntax" class="mb-16 scroll-mt-24">
+					<h2
+						class="text-3xl font-bold text-white mb-8 flex items-center"
+					>
+						Query Syntax (AQL)
+					</h2>
+					<p class="text-gray-400 mb-8">
+						SawitDB uses intuitive farming metaphors for all
+						database operations. It also supports Generic SQL for
+						easier adoption.
+					</p>
 
-                    <!-- PHP Initialization -->
-                    <div>
-                        <h4 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-3">PHP Usage</h4>
-                        <div class="bg-black/50 rounded-xl p-6 shadow-xl overflow-x-auto border border-white/10 h-full">
-                            <code class="font-mono text-sm text-gray-300">
-                                <span class="text-purple-400">use</span> WowoEngine\SawitDB\SawitDB;<br><br>
-                                <span class="text-gray-500">// Initialize</span><br>
-                                <span class="text-purple-400">$db</span> = <span class="text-purple-400">new</span> <span class="text-yellow-300">SawitDB</span>(<span class="text-green-300">'plantation.sawit'</span>);
-                            </code>
-                        </div>
-                    </div>
-                </div>
+					<!-- Dual Syntax Table -->
+					<div class="glass-card rounded-xl overflow-hidden mb-12">
+						<div class="p-4 bg-white/5 border-b border-white/5">
+							<h3 class="font-bold text-white">
+								Dual Syntax Comparison
+							</h3>
+						</div>
+						<div class="overflow-x-auto">
+							<table class="w-full text-sm text-left">
+								<thead
+									class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5"
+								>
+									<tr>
+										<th class="px-6 py-4 font-bold">
+											Operation
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Agricultural Query Language (AQL)
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Generic SQL (Standard)
+										</th>
+									</tr>
+								</thead>
+								<tbody class="divide-y divide-white/5">
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Create DB
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											BUKA WILAYAH sales_db
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											CREATE DATABASE sales_db
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Use DB
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											MASUK WILAYAH sales_db
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											USE sales_db
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Show DBs
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											LIHAT WILAYAH
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											SHOW DATABASES
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Create Table
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											LAHAN products
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											CREATE TABLE products
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Insert
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											TANAM KE products (...) BIBIT (...)
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											INSERT INTO products (...) VALUES
+											(...)
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Select
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											PANEN * DARI products ...
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											SELECT * FROM products ...
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Update
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											PUPUK products DENGAN ...
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											UPDATE products SET ...
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Delete
+										</td>
+										<td
+											class="px-6 py-4 text-green-400 font-mono"
+										>
+											GUSUR DARI products ...
+										</td>
+										<td
+											class="px-6 py-4 text-blue-400 font-mono"
+										>
+											DELETE FROM products ...
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 
-                <!-- Source Installation (Collapsible or Footnote) -->
-                <div class="mt-8 pt-8 border-t border-white/5">
-                    <details class="text-gray-400 cursor-pointer group">
-                        <summary class="hover:text-white transition-colors text-sm font-medium">Build from Source (Git)
-                        </summary>
-                        <div class="mt-4 bg-black/50 rounded-xl p-4 border border-white/10">
-                            <code class="block font-mono text-sm text-gray-300">
-                                git clone https://github.com/WowoEngine/SawitDB.git<br>
-                                cd SawitDB && npm install
-                            </code>
-                        </div>
-                    </details>
-                </div>
-            </section>
+					<div class="grid lg:grid-cols-2 gap-8 mb-8">
+						<div class="glass-card rounded-xl overflow-hidden">
+							<div
+								class="bg-green-500/10 p-4 border-b border-green-500/20"
+							>
+								<h3 class="font-bold text-green-400">
+									Management
+								</h3>
+							</div>
+							<div class="p-4 space-y-4">
+								<div>
+									<span
+										class="text-xs font-bold text-gray-500 uppercase tracking-wider"
+										>Create Table</span
+									>
+									<div
+										class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300"
+									>
+										LAHAN [name]
+									</div>
+								</div>
+								<div>
+									<span
+										class="text-xs font-bold text-gray-500 uppercase tracking-wider"
+										>Show Tables</span
+									>
+									<div
+										class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300"
+									>
+										LIHAT LAHAN
+									</div>
+								</div>
+								<div>
+									<span
+										class="text-xs font-bold text-gray-500 uppercase tracking-wider"
+										>Drop Table</span
+									>
+									<div
+										class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300"
+									>
+										BAKAR LAHAN [name]
+									</div>
+								</div>
+							</div>
+						</div>
 
-            <!-- Syntax -->
-            <section id="syntax" class="mb-16 scroll-mt-24">
-                <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
-                    Query Syntax (AQL)
-                </h2>
-                <p class="text-gray-400 mb-8">SawitDB uses intuitive farming metaphors for all database operations. It
-                    also supports Generic SQL for easier adoption.</p>
+						<div class="glass-card rounded-xl overflow-hidden">
+							<div
+								class="bg-blue-500/10 p-4 border-b border-blue-500/20"
+							>
+								<h3 class="font-bold text-blue-400">
+									Data Manipulation
+								</h3>
+							</div>
+							<div class="p-4 space-y-4">
+								<div>
+									<span
+										class="text-xs font-bold text-gray-500 uppercase tracking-wider"
+										>Insert (Plant)</span
+									>
+									<div
+										class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300"
+									>
+										TANAM KE [table] (cols) BIBIT (vals)
+									</div>
+								</div>
+								<div>
+									<span
+										class="text-xs font-bold text-gray-500 uppercase tracking-wider"
+										>Select (Harvest)</span
+									>
+									<div
+										class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300"
+									>
+										PANEN * DARI [table] DIMANA [cond]
+									</div>
+								</div>
+								<div>
+									<span
+										class="text-xs font-bold text-gray-500 uppercase tracking-wider"
+										>Update (Fertilize)</span
+									>
+									<div
+										class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300"
+									>
+										PUPUK [table] DENGAN x=y DIMANA [cond]
+									</div>
+								</div>
+								<div>
+									<span
+										class="text-xs font-bold text-gray-500 uppercase tracking-wider"
+										>Delete (Evict)</span
+									>
+									<div
+										class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300"
+									>
+										GUSUR DARI [table] DIMANA [cond]
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-                <!-- Dual Syntax Table -->
-                <div class="glass-card rounded-xl overflow-hidden mb-12">
-                    <div class="p-4 bg-white/5 border-b border-white/5">
-                        <h3 class="font-bold text-white">Dual Syntax Comparison</h3>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5">
-                                <tr>
-                                    <th class="px-6 py-4 font-bold">Operation</th>
-                                    <th class="px-6 py-4 font-bold">Agricultural Query Language (AQL)</th>
-                                    <th class="px-6 py-4 font-bold">Generic SQL (Standard)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Create DB</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">BUKA WILAYAH sales_db</td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">CREATE DATABASE sales_db</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Use DB</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">MASUK WILAYAH sales_db</td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">USE sales_db</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Show DBs</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">LIHAT WILAYAH</td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">SHOW DATABASES</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Create Table</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">LAHAN products</td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">CREATE TABLE products</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Insert</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">TANAM KE products (...) BIBIT (...)
-                                    </td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">INSERT INTO products (...) VALUES
-                                        (...)</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Select</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">PANEN * DARI products ...</td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">SELECT * FROM products ...</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Update</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">PUPUK products DENGAN ...</td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">UPDATE products SET ...</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Delete</td>
-                                    <td class="px-6 py-4 text-green-400 font-mono">GUSUR DARI products ...</td>
-                                    <td class="px-6 py-4 text-blue-400 font-mono">DELETE FROM products ...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+					<div
+						class="bg-black/50 text-gray-300 p-6 rounded-xl font-mono text-sm shadow-lg overflow-x-auto mb-12 border border-white/10"
+					>
+						<span class="text-gray-500">// Create Land</span>
+						<span class="text-green-400">LAHAN</span> sawit_blok_a
 
-                <div class="grid lg:grid-cols-2 gap-8 mb-8">
-                    <div class="glass-card rounded-xl overflow-hidden">
-                        <div class="bg-green-500/10 p-4 border-b border-green-500/20">
-                            <h3 class="font-bold text-green-400">Management</h3>
-                        </div>
-                        <div class="p-4 space-y-4">
-                            <div>
-                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Create
-                                    Table</span>
-                                <div class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300">LAHAN [name]
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Show
-                                    Tables</span>
-                                <div class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300">LIHAT LAHAN
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Drop Table</span>
-                                <div class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300">BAKAR LAHAN
-                                    [name]</div>
-                            </div>
-                        </div>
-                    </div>
+						<span class="text-gray-500"
+							>// Plant Seeds (Insert)</span
+						>
+						<span class="text-green-400">TANAM KE</span> sawit (id,
+						bibit, umur)
+						<span class="text-green-400">BIBIT</span> (1, 'Tenera',
+						5)
 
-                    <div class="glass-card rounded-xl overflow-hidden">
-                        <div class="bg-blue-500/10 p-4 border-b border-blue-500/20">
-                            <h3 class="font-bold text-blue-400">Data Manipulation</h3>
-                        </div>
-                        <div class="p-4 space-y-4">
-                            <div>
-                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Insert
-                                    (Plant)</span>
-                                <div class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300">TANAM KE
-                                    [table] (cols) BIBIT (vals)</div>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Select
-                                    (Harvest)</span>
-                                <div class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300">PANEN * DARI
-                                    [table] DIMANA [cond]</div>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Update
-                                    (Fertilize)</span>
-                                <div class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300">PUPUK [table]
-                                    DENGAN x=y DIMANA [cond]</div>
-                            </div>
-                            <div>
-                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Delete
-                                    (Evict)</span>
-                                <div class="bg-black/30 p-2 rounded mt-1 font-mono text-sm text-gray-300">GUSUR DARI
-                                    [table] DIMANA [cond]</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+						<span class="text-gray-500">// Harvest (Select)</span>
+						<span class="text-green-400">PANEN</span> *
+						<span class="text-green-400">DARI</span> sawit
+						<span class="text-green-400">DIMANA</span> umur > 3
 
-                <div
-                    class="bg-black/50 text-gray-300 p-6 rounded-xl font-mono text-sm shadow-lg overflow-x-auto mb-12 border border-white/10">
-                    <span class="text-gray-500">// Create Land</span>
-                    <span class="text-green-400">LAHAN</span> sawit_blok_a
+						<span class="text-gray-500">// Fertilize (Update)</span>
+						<span class="text-green-400">PUPUK</span> sawit
+						<span class="text-green-400">DENGAN</span>
+						status='Panen'
+						<span class="text-green-400">DIMANA</span> umur >= 10
 
-                    <span class="text-gray-500">// Plant Seeds (Insert)</span>
-                    <span class="text-green-400">TANAM KE</span> sawit (id, bibit, umur) <span
-                        class="text-green-400">BIBIT</span> (1, 'Tenera', 5)
+						<span class="text-gray-500">// Evict (Delete)</span>
+						<span class="text-green-400">GUSUR DARI</span> sawit
+						<span class="text-green-400">DIMANA</span> id = 99
+					</div>
 
-                    <span class="text-gray-500">// Harvest (Select)</span>
-                    <span class="text-green-400">PANEN</span> * <span class="text-green-400">DARI</span> sawit <span
-                        class="text-green-400">DIMANA</span> umur > 3
+					<!-- Operators Table -->
+					<div class="glass-card rounded-xl overflow-hidden mb-12">
+						<div class="p-4 bg-white/5 border-b border-white/5">
+							<h3 class="font-bold text-white">
+								Supported Operators
+							</h3>
+						</div>
+						<div class="overflow-x-auto">
+							<table class="w-full text-sm text-left">
+								<thead
+									class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5"
+								>
+									<tr>
+										<th class="px-6 py-4 font-bold">
+											Operator
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Syntax Example
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Description
+										</th>
+									</tr>
+								</thead>
+								<tbody class="divide-y divide-white/5">
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Comparison
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											=, !=, &gt;, &lt;, &gt;=, &lt;=
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Standard value comparison
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Logical
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											AND, OR
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Combine multiple conditions
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											In List
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											IN ('coffee', 'tea')
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Matches any value in the list
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Pattern
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											LIKE 'Jwa%'
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Wildcard matching (%)
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Range
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											BETWEEN 10 AND 50
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Inclusive range check
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Null Check
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											IS NULL, IS NOT NULL
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Check for existence
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Pagination
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											LIMIT 10 OFFSET 5
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Restrict and skip rows
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											DISTINCT
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											SELECT DISTINCT col
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Remove duplicate rows
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											LEFT JOIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											LEFT JOIN ... ON ...
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Include unmatched left rows
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											RIGHT JOIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											RIGHT JOIN ... ON ...
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Include unmatched right rows
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											CROSS JOIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											CROSS JOIN table
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Cartesian product
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											HAVING
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											GROUP BY x HAVING count &gt; 5
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Filter after aggregation
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											EXPLAIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-gray-300"
+										>
+											EXPLAIN SELECT ...
+										</td>
+										<td class="px-6 py-4 text-gray-400">
+											Show query execution plan
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 
-                    <span class="text-gray-500">// Fertilize (Update)</span>
-                    <span class="text-green-400">PUPUK</span> sawit <span class="text-green-400">DENGAN</span>
-                    status='Panen' <span class="text-green-400">DIMANA</span> umur >= 10
+					<!-- Full Feature Comparison -->
+					<div class="glass-card rounded-xl overflow-hidden">
+						<div class="p-4 bg-white/5 border-b border-white/5">
+							<h3 class="font-bold text-white">
+								Full Feature Comparison
+							</h3>
+						</div>
+						<div class="overflow-x-auto">
+							<table class="w-full text-sm text-left">
+								<thead
+									class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5"
+								>
+									<tr>
+										<th class="px-6 py-4 font-bold">
+											Feature
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Tani Edition (AQL)
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Generic SQL
+										</th>
+										<th class="px-6 py-4 font-bold">
+											Notes
+										</th>
+									</tr>
+								</thead>
+								<tbody class="divide-y divide-white/5">
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Create DB
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											BUKA WILAYAH [db]
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											CREATE DATABASE [db]
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Creates .sawit file
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Show Tables
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											LIHAT LAHAN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											SHOW TABLES
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Lists tables
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Aggregation
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											HITUNG SUM(x) DARI [t]
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											SELECT SUM(x) FROM [t]
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											COUNT, SUM, AVG
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											Index
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											INDEKS [t] PADA [f]
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											CREATE INDEX ON [t] ([f])
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											B-Tree Indexing
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											MIN/MAX
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											HITUNG MIN(x) DARI [t]
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											SELECT MIN(x) FROM [t]
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Aggregation
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											DISTINCT
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											PANEN UNIK x DARI [t]
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											SELECT DISTINCT x FROM [t]
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Unique rows
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											LEFT JOIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											GABUNG KIRI
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											LEFT JOIN ... ON ...
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Outer join
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											RIGHT JOIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											GABUNG KANAN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											RIGHT JOIN ... ON ...
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Outer join
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											CROSS JOIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											GABUNG SILANG
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											CROSS JOIN
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Cartesian product
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											HAVING
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											PUNYA count > 5
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											HAVING count > 5
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Filter groups
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-white/5 transition-colors"
+									>
+										<td
+											class="px-6 py-4 font-medium text-white"
+										>
+											EXPLAIN
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-green-400"
+										>
+											JELASKAN SELECT ...
+										</td>
+										<td
+											class="px-6 py-4 font-mono text-blue-400"
+										>
+											EXPLAIN SELECT ...
+										</td>
+										<td
+											class="px-6 py-4 text-gray-500 text-xs"
+										>
+											Query plan
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
 
-                    <span class="text-gray-500">// Evict (Delete)</span>
-                    <span class="text-green-400">GUSUR DARI</span> sawit <span class="text-green-400">DIMANA</span> id =
-                    99
-                </div>
+				<!-- Network -->
+				<section id="network" class="mb-16 scroll-mt-24">
+					<div class="flex items-center justify-between mb-8">
+						<h2
+							class="text-3xl font-bold text-white flex items-center"
+						>
+							Network
+						</h2>
+						<span
+							class="bg-red-500/10 text-red-400 px-3 py-1 rounded-full text-sm font-bold border border-red-500/20"
+							>NEW</span
+						>
+					</div>
 
-                <!-- Operators Table -->
-                <div class="glass-card rounded-xl overflow-hidden mb-12">
-                    <div class="p-4 bg-white/5 border-b border-white/5">
-                        <h3 class="font-bold text-white">Supported Operators</h3>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5">
-                                <tr>
-                                    <th class="px-6 py-4 font-bold">Operator</th>
-                                    <th class="px-6 py-4 font-bold">Syntax Example</th>
-                                    <th class="px-6 py-4 font-bold">Description</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Comparison</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">=, !=, &gt;, &lt;, &gt;=, &lt;=</td>
-                                    <td class="px-6 py-4 text-gray-400">Standard value comparison</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Logical</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">AND, OR</td>
-                                    <td class="px-6 py-4 text-gray-400">Combine multiple conditions</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">In List</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">IN ('coffee', 'tea')</td>
-                                    <td class="px-6 py-4 text-gray-400">Matches any value in the list</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Pattern</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">LIKE 'Jwa%'</td>
-                                    <td class="px-6 py-4 text-gray-400">Wildcard matching (%)</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Range</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">BETWEEN 10 AND 50</td>
-                                    <td class="px-6 py-4 text-gray-400">Inclusive range check</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Null Check</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">IS NULL, IS NOT NULL</td>
-                                    <td class="px-6 py-4 text-gray-400">Check for existence</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Pagination</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">LIMIT 10 OFFSET 5</td>
-                                    <td class="px-6 py-4 text-gray-400">Restrict and skip rows</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">DISTINCT</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">SELECT DISTINCT col</td>
-                                    <td class="px-6 py-4 text-gray-400">Remove duplicate rows</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">LEFT JOIN</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">LEFT JOIN ... ON ...</td>
-                                    <td class="px-6 py-4 text-gray-400">Include unmatched left rows</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">RIGHT JOIN</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">RIGHT JOIN ... ON ...</td>
-                                    <td class="px-6 py-4 text-gray-400">Include unmatched right rows</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">CROSS JOIN</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">CROSS JOIN table</td>
-                                    <td class="px-6 py-4 text-gray-400">Cartesian product</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">HAVING</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">GROUP BY x HAVING count &gt; 5</td>
-                                    <td class="px-6 py-4 text-gray-400">Filter after aggregation</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">EXPLAIN</td>
-                                    <td class="px-6 py-4 font-mono text-gray-300">EXPLAIN SELECT ...</td>
-                                    <td class="px-6 py-4 text-gray-400">Show query execution plan</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+					<p class="text-gray-400 mb-6">
+						Connect using the
+						<code class="text-red-400 bg-white/10 px-1 rounded"
+							>sawitdb://</code
+						>
+						protocol and manage your data remotely.
+					</p>
 
-                <!-- Full Feature Comparison -->
-                <div class="glass-card rounded-xl overflow-hidden">
-                    <div class="p-4 bg-white/5 border-b border-white/5">
-                        <h3 class="font-bold text-white">Full Feature Comparison</h3>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-xs text-gray-400 uppercase bg-white/5 border-b border-white/5">
-                                <tr>
-                                    <th class="px-6 py-4 font-bold">Feature</th>
-                                    <th class="px-6 py-4 font-bold">Tani Edition (AQL)</th>
-                                    <th class="px-6 py-4 font-bold">Generic SQL</th>
-                                    <th class="px-6 py-4 font-bold">Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Create DB</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">BUKA WILAYAH [db]</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">CREATE DATABASE [db]</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Creates .sawit file</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Show Tables</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">LIHAT LAHAN</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">SHOW TABLES</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Lists tables</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Aggregation</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">HITUNG SUM(x) DARI [t]</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">SELECT SUM(x) FROM [t]</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">COUNT, SUM, AVG</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">Index</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">INDEKS [t] PADA [f]</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">CREATE INDEX ON [t] ([f])</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">B-Tree Indexing</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">MIN/MAX</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">HITUNG MIN(x) DARI [t]</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">SELECT MIN(x) FROM [t]</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Aggregation</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">DISTINCT</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">PANEN UNIK x DARI [t]</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">SELECT DISTINCT x FROM [t]</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Unique rows</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">LEFT JOIN</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">GABUNG KIRI</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">LEFT JOIN ... ON ...</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Outer join</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">RIGHT JOIN</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">GABUNG KANAN</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">RIGHT JOIN ... ON ...</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Outer join</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">CROSS JOIN</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">GABUNG SILANG</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">CROSS JOIN</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Cartesian product</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">HAVING</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">PUNYA count > 5</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">HAVING count > 5</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Filter groups</td>
-                                </tr>
-                                <tr class="hover:bg-white/5 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-white">EXPLAIN</td>
-                                    <td class="px-6 py-4 font-mono text-green-400">JELASKAN SELECT ...</td>
-                                    <td class="px-6 py-4 font-mono text-blue-400">EXPLAIN SELECT ...</td>
-                                    <td class="px-6 py-4 text-gray-500 text-xs">Query plan</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
+					<div class="grid md:grid-cols-2 gap-6 mb-8">
+						<div
+							class="glass-card p-5 rounded-lg border border-white/10"
+						>
+							<h4 class="font-bold text-white mb-2">
+								Connection
+							</h4>
+							<code
+								class="text-sm bg-black/30 p-1 block rounded text-gray-300"
+								>sawitdb://host:port/database</code
+							>
+						</div>
+						<div
+							class="glass-card p-5 rounded-lg border border-white/10"
+						>
+							<h4 class="font-bold text-white mb-2">
+								Advanced Features
+							</h4>
+							<ul
+								class="text-sm text-gray-400 list-disc ml-4 space-y-1"
+							>
+								<li>Multi-database Support</li>
+								<li>B-Tree Indexing</li>
+								<li>Aggregations (COUNT, SUM, etc.)</li>
+								<li>Optional Authentication</li>
+							</ul>
+						</div>
+					</div>
 
-            <!-- Network -->
-            <section id="network" class="mb-16 scroll-mt-24">
-                <div class="flex items-center justify-between mb-8">
-                    <h2 class="text-3xl font-bold text-white flex items-center">
-                        Network
-                    </h2>
-                    <span
-                        class="bg-red-500/10 text-red-400 px-3 py-1 rounded-full text-sm font-bold border border-red-500/20">NEW</span>
-                </div>
+					<div
+						class="bg-black/40 rounded-xl p-6 text-white shadow-lg border border-white/10 backdrop-blur-sm"
+					>
+						<h4
+							class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3"
+						>
+							Start Server
+						</h4>
+						<div class="overflow-x-auto mb-6">
+							<pre class="font-mono text-sm text-green-400">
+node bin/sawit-server.js --port 7878</pre
+							>
+						</div>
 
-                <p class="text-gray-400 mb-6">Connect using the <code
-                        class="text-red-400 bg-white/10 px-1 rounded">sawitdb://</code> protocol and manage your data
-                    remotely.</p>
+						<h4
+							class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3"
+						>
+							Environment Variables
+						</h4>
+						<div
+							class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-sm text-gray-400 overflow-x-auto"
+						>
+							<div class="border-b border-gray-700 pb-2">
+								SAWIT_PORT=7878
+							</div>
+							<div class="border-b border-gray-700 pb-2">
+								SAWIT_HOST=0.0.0.0
+							</div>
+							<div class="border-b border-gray-700 pb-2">
+								SAWIT_DATA_DIR=./data
+							</div>
+							<div class="border-b border-gray-700 pb-2">
+								SAWIT_AUTH=user:pass
+							</div>
+						</div>
+					</div>
+				</section>
 
-                <div class="grid md:grid-cols-2 gap-6 mb-8">
-                    <div class="glass-card p-5 rounded-lg border border-white/10">
-                        <h4 class="font-bold text-white mb-2">Connection</h4>
-                        <code
-                            class="text-sm bg-black/30 p-1 block rounded text-gray-300">sawitdb://host:port/database</code>
-                    </div>
-                    <div class="glass-card p-5 rounded-lg border border-white/10">
-                        <h4 class="font-bold text-white mb-2">Advanced Features</h4>
-                        <ul class="text-sm text-gray-400 list-disc ml-4 space-y-1">
-                            <li>Multi-database Support</li>
-                            <li>B-Tree Indexing</li>
-                            <li>Aggregations (COUNT, SUM, etc.)</li>
-                            <li>Optional Authentication</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-black/40 rounded-xl p-6 text-white shadow-lg border border-white/10 backdrop-blur-sm">
-                    <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Start Server</h4>
-                    <div class="overflow-x-auto mb-6">
-                        <pre class="font-mono text-sm text-green-400">node bin/sawit-server.js --port 7878</pre>
-                    </div>
-
-                    <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Environment Variables
-                    </h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-sm text-gray-400 overflow-x-auto">
-                        <div class="border-b border-gray-700 pb-2">SAWIT_PORT=7878</div>
-                        <div class="border-b border-gray-700 pb-2">SAWIT_HOST=0.0.0.0</div>
-                        <div class="border-b border-gray-700 pb-2">SAWIT_DATA_DIR=./data</div>
-                        <div class="border-b border-gray-700 pb-2">SAWIT_AUTH=user:pass</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Client API & CLI -->
-            <section id="tools-section" class="mb-16 scroll-mt-24">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    <div id="client-api" class="glass-card rounded-2xl p-6 md:p-8 hover:bg-white/5 transition-all">
-                        <div class="flex items-center gap-4 mb-6">
-                            <i class="fas fa-code text-3xl text-green-400"></i>
-                            <div>
-                                <h2 class="text-2xl font-bold text-white">Client API</h2>
-                                <p class="text-sm text-gray-400">Node.js Integration</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mb-6 text-sm md:text-base">
-                            SawitDB provides a clean, promise-based client for Node.js applications.
-                        </p>
-                        <div class="bg-black/50 rounded-xl p-4 md:p-6 border border-white/10 overflow-x-auto">
-                            <pre class="font-mono text-sm text-gray-300"><code><span class="text-purple-400">const</span> client = <span class="text-purple-400">new</span> <span class="text-yellow-300">SawitClient</span>(<span class="text-green-300">'sawitdb://localhost:7878'</span>);
+				<!-- Client API & CLI -->
+				<section id="tools-section" class="mb-16 scroll-mt-24">
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+						<div
+							id="client-api"
+							class="glass-card rounded-2xl p-6 md:p-8 hover:bg-white/5 transition-all"
+						>
+							<div class="flex items-center gap-4 mb-6">
+								<i
+									class="fas fa-code text-3xl text-green-400"
+								></i>
+								<div>
+									<h2 class="text-2xl font-bold text-white">
+										Client API
+									</h2>
+									<p class="text-sm text-gray-400">
+										Node.js Integration
+									</p>
+								</div>
+							</div>
+							<p class="text-gray-300 mb-6 text-sm md:text-base">
+								SawitDB provides a clean, promise-based client
+								for Node.js applications.
+							</p>
+							<div
+								class="bg-black/50 rounded-xl p-4 md:p-6 border border-white/10 overflow-x-auto"
+							>
+								<pre
+									class="font-mono text-sm text-gray-300"
+								><code><span class="text-purple-400">const</span> client = <span class="text-purple-400">new</span> <span class="text-yellow-300">SawitClient</span>(<span class="text-green-300">'sawitdb://localhost:7878'</span>);
 <span class="text-purple-400">await</span> client.connect();
 
 <span class="text-gray-500">// Switch DB</span>
@@ -911,180 +1922,319 @@
 <span class="text-purple-400">const</span> profit = <span class="text-purple-400">await</span> client.query(
     <span class="text-green-300">"HITUNG SUM(total) DARI sales"</span>
 );</code></pre>
-                        </div>
-                    </div>
+							</div>
+						</div>
 
-                    <div id="cli" class="glass-card rounded-2xl p-6 md:p-8 hover:bg-white/5 transition-all">
-                        <div class="flex items-center gap-4 mb-6">
-                            <i class="fas fa-terminal text-3xl text-amber-400"></i>
-                            <div>
-                                <h2 class="text-2xl font-bold text-white">CLI Tools</h2>
-                                <p class="text-sm text-gray-400">Manage & Benchmark</p>
-                            </div>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="bg-black/30 p-3 rounded-lg border border-white/5">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-green-400">Interactive Shell</span>
-                                    <code class="text-xs bg-white/10 px-1 rounded">cli/remote.js</code>
-                                </div>
-                                <p class="text-xs text-gray-400">Connect to remote server. Supports <code
-                                        class="text-white">USE [db]</code> context switching.</p>
-                            </li>
-                            <li class="bg-black/30 p-3 rounded-lg border border-white/5">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-blue-400">Unit Tests</span>
-                                    <code class="text-xs bg-white/10 px-1 rounded">cli/test.js</code>
-                                </div>
-                                <p class="text-xs text-gray-400">Run 17+ automated test suites covering CRUD,
-                                    JOINs, DISTINCT, HAVING, EXPLAIN, and more.</p>
-                            </li>
-                            <li class="bg-black/30 p-3 rounded-lg border border-white/5">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-purple-400">Benchmark</span>
-                                    <code class="text-xs bg-white/10 px-1 rounded">cli/benchmark.js</code>
-                                </div>
-                                <p class="text-xs text-gray-400">Test throughput. Measures INSERT (~38k TPS) and SELECT
-                                    (~120k TPS) performance.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+						<div
+							id="cli"
+							class="glass-card rounded-2xl p-6 md:p-8 hover:bg-white/5 transition-all"
+						>
+							<div class="flex items-center gap-4 mb-6">
+								<i
+									class="fas fa-terminal text-3xl text-amber-400"
+								></i>
+								<div>
+									<h2 class="text-2xl font-bold text-white">
+										CLI Tools
+									</h2>
+									<p class="text-sm text-gray-400">
+										Manage & Benchmark
+									</p>
+								</div>
+							</div>
+							<ul class="space-y-4">
+								<li
+									class="bg-black/30 p-3 rounded-lg border border-white/5"
+								>
+									<div
+										class="flex justify-between items-center mb-1"
+									>
+										<span class="font-bold text-green-400"
+											>Interactive Shell</span
+										>
+										<code
+											class="text-xs bg-white/10 px-1 rounded"
+											>cli/remote.js</code
+										>
+									</div>
+									<p class="text-xs text-gray-400">
+										Connect to remote server. Supports
+										<code class="text-white">USE [db]</code>
+										context switching.
+									</p>
+								</li>
+								<li
+									class="bg-black/30 p-3 rounded-lg border border-white/5"
+								>
+									<div
+										class="flex justify-between items-center mb-1"
+									>
+										<span class="font-bold text-blue-400"
+											>Unit Tests</span
+										>
+										<code
+											class="text-xs bg-white/10 px-1 rounded"
+											>cli/test.js</code
+										>
+									</div>
+									<p class="text-xs text-gray-400">
+										Run 17+ automated test suites covering
+										CRUD, JOINs, DISTINCT, HAVING, EXPLAIN,
+										and more.
+									</p>
+								</li>
+								<li
+									class="bg-black/30 p-3 rounded-lg border border-white/5"
+								>
+									<div
+										class="flex justify-between items-center mb-1"
+									>
+										<span class="font-bold text-purple-400"
+											>Benchmark</span
+										>
+										<code
+											class="text-xs bg-white/10 px-1 rounded"
+											>cli/benchmark.js</code
+										>
+									</div>
+									<p class="text-xs text-gray-400">
+										Test throughput. Measures INSERT (~38k
+										TPS) and SELECT (~120k TPS) performance.
+									</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
 
-            <!-- Changelog -->
-            <section id="changelog" class="mb-16 scroll-mt-24">
-                <h2 class="text-3xl font-bold text-white mb-8 border-b border-white/10 pb-4">Latest Updates</h2>
-                <div class="space-y-6">
-                    <!-- v2.6.0 -->
-                    <div class="relative pl-8 border-l-2 border-amber-500/30">
-                        <div
-                            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-gray-900">
-                        </div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-xl font-bold text-white">v2.6.0</h3>
-                            <span
-                                class="px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 border border-green-500/20">Latest</span>
-                            <span class="text-sm text-gray-400">January 10, 2026</span>
-                        </div>
-                        <ul class="list-disc list-outside text-gray-300 text-sm space-y-2 ml-4">
-                            <li><strong>Modular Architecture:</strong> Codebase refactored into service-oriented modules
-                                (Managers, Executors, Logic).</li>
-                            <li><strong>True Multi-Threading:</strong> Worker Pool architecture with Least-Busy Load
-                                Balancing & Auto-Healing.</li>
-                            <li><strong>AQL Syntax Parity:</strong> Full support for <code
-                                    class="text-green-400">GABUNG</code> (Join), <code
-                                    class="text-green-400">URUTKAN</code> (Order By), <code
-                                    class="text-green-400">HANYA</code> (Limit), and more.</li>
-                            <li><strong>Advanced SQL:</strong>
-                                <ul class="list-disc ml-4 mt-1 text-gray-400 space-y-1">
-                                    <li><strong>JOINs:</strong> LEFT, RIGHT, FULL OUTER, CROSS.</li>
-                                    <li><strong>DISTINCT:</strong> Remove duplicate rows.</li>
-                                    <li><strong>HAVING:</strong> Filter grouped results.</li>
-                                    <li><strong>EXPLAIN:</strong> Analyze query plans.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Security:</strong> SHA-256 Hashing, Timing-Safe Auth, Input Validation, Regex
-                                Injection Fix.</li>
-                            <li><strong>Performance:</strong> Query Cloning (vs JSON.parse), True LRU Cache, B-Tree
-                                Binary Search, Optimized Aggregates.</li>
-                        </ul>
-                    </div>
+				<!-- Changelog -->
+				<section id="changelog" class="mb-16 scroll-mt-24">
+					<h2
+						class="text-3xl font-bold text-white mb-8 border-b border-white/10 pb-4"
+					>
+						Latest Updates
+					</h2>
+					<div class="space-y-6">
+						<!-- v2.6.0 -->
+						<div
+							class="relative pl-8 border-l-2 border-amber-500/30"
+						>
+							<div
+								class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-gray-900"
+							></div>
+							<div class="flex items-center gap-3 mb-2">
+								<h3 class="text-xl font-bold text-white">
+									v2.6.0
+								</h3>
+								<span
+									class="px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 border border-green-500/20"
+									>Latest</span
+								>
+								<span class="text-sm text-gray-400"
+									>January 10, 2026</span
+								>
+							</div>
+							<ul
+								class="list-disc list-outside text-gray-300 text-sm space-y-2 ml-4"
+							>
+								<li>
+									<strong>Modular Architecture:</strong>
+									Codebase refactored into service-oriented
+									modules (Managers, Executors, Logic).
+								</li>
+								<li>
+									<strong>True Multi-Threading:</strong>
+									Worker Pool architecture with Least-Busy
+									Load Balancing & Auto-Healing.
+								</li>
+								<li>
+									<strong>AQL Syntax Parity:</strong> Full
+									support for
+									<code class="text-green-400">GABUNG</code>
+									(Join),
+									<code class="text-green-400">URUTKAN</code>
+									(Order By),
+									<code class="text-green-400">HANYA</code>
+									(Limit), and more.
+								</li>
+								<li>
+									<strong>Advanced SQL:</strong>
+									<ul
+										class="list-disc ml-4 mt-1 text-gray-400 space-y-1"
+									>
+										<li>
+											<strong>JOINs:</strong> LEFT, RIGHT,
+											FULL OUTER, CROSS.
+										</li>
+										<li>
+											<strong>DISTINCT:</strong> Remove
+											duplicate rows.
+										</li>
+										<li>
+											<strong>HAVING:</strong> Filter
+											grouped results.
+										</li>
+										<li>
+											<strong>EXPLAIN:</strong> Analyze
+											query plans.
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong>Security:</strong> SHA-256 Hashing,
+									Timing-Safe Auth, Input Validation, Regex
+									Injection Fix.
+								</li>
+								<li>
+									<strong>Performance:</strong> Query Cloning
+									(vs JSON.parse), True LRU Cache, B-Tree
+									Binary Search, Optimized Aggregates.
+								</li>
+							</ul>
+						</div>
 
-                    <!-- v2.5.0 -->
-                    <div class="relative pl-8 border-l-2 border-white/10">
-                        <div
-                            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-700 border-4 border-gray-900">
-                        </div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-xl font-bold text-gray-400">v2.5.0</h3>
-                            <span class="text-sm text-gray-500">Jan 2026</span>
-                        </div>
-                        <ul class="list-disc list-outside text-gray-400 text-sm space-y-1 ml-4">
-                            <li><strong>Performance:</strong> Object Caching & Async WAL achieved ~247,000 TPS for
-                                reads.</li>
-                            <li><strong>Hash Join:</strong> Complex joins are now 77x Faster (O(M+N)).</li>
-                            <li><strong>New Tools:</strong> Added CLI Unit Tests and Benchmarking Tool.</li>
-                            <li><strong>Persistence Fix:</strong> Fixed Index loss on restart.</li>
-                        </ul>
-                    </div>
+						<!-- v2.5.0 -->
+						<div class="relative pl-8 border-l-2 border-white/10">
+							<div
+								class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-700 border-4 border-gray-900"
+							></div>
+							<div class="flex items-center gap-3 mb-2">
+								<h3 class="text-xl font-bold text-gray-400">
+									v2.5.0
+								</h3>
+								<span class="text-sm text-gray-500"
+									>Jan 2026</span
+								>
+							</div>
+							<ul
+								class="list-disc list-outside text-gray-400 text-sm space-y-1 ml-4"
+							>
+								<li>
+									<strong>Performance:</strong> Object Caching
+									& Async WAL achieved ~247,000 TPS for reads.
+								</li>
+								<li>
+									<strong>Hash Join:</strong> Complex joins
+									are now 77x Faster (O(M+N)).
+								</li>
+								<li>
+									<strong>New Tools:</strong> Added CLI Unit
+									Tests and Benchmarking Tool.
+								</li>
+								<li>
+									<strong>Persistence Fix:</strong> Fixed
+									Index loss on restart.
+								</li>
+							</ul>
+						</div>
 
-                    <!-- v2.4 -->
-                    <div class="relative pl-8 border-l-2 border-white/10">
-                        <div
-                            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-700 border-4 border-gray-900">
-                        </div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-xl font-bold text-gray-400">v2.4</h3>
-                            <span class="text-sm text-gray-500">Jan 2026</span>
-                        </div>
-                        <ul class="list-disc list-outside text-gray-400 text-sm space-y-1 ml-4">
-                            <li><strong>Security:</strong> Full Parameterized Query support.</li>
-                            <li><strong>Docs:</strong> Enhanced documentation site.</li>
-                        </ul>
-                    </div>
+						<!-- v2.4 -->
+						<div class="relative pl-8 border-l-2 border-white/10">
+							<div
+								class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-700 border-4 border-gray-900"
+							></div>
+							<div class="flex items-center gap-3 mb-2">
+								<h3 class="text-xl font-bold text-gray-400">
+									v2.4
+								</h3>
+								<span class="text-sm text-gray-500"
+									>Jan 2026</span
+								>
+							</div>
+							<ul
+								class="list-disc list-outside text-gray-400 text-sm space-y-1 ml-4"
+							>
+								<li>
+									<strong>Security:</strong> Full
+									Parameterized Query support.
+								</li>
+								<li>
+									<strong>Docs:</strong> Enhanced
+									documentation site.
+								</li>
+							</ul>
+						</div>
 
-                    <!-- v2.3 -->
-                    <div class="relative pl-8 border-l-2 border-white/10">
-                        <div
-                            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-700 border-4 border-gray-900">
-                        </div>
-                        <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-xl font-bold text-gray-400">v2.3</h3>
-                            <span class="text-sm text-gray-500">Dec 2025</span>
-                        </div>
-                        <ul class="list-disc list-outside text-gray-400 text-sm space-y-1 ml-4">
-                            <li><strong>Generic Syntax:</strong> Added SQL Standard compatibility.</li>
-                            <li><strong>Operators:</strong> Added LIKE, IN, BETWEEN support.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+						<!-- v2.3 -->
+						<div class="relative pl-8 border-l-2 border-white/10">
+							<div
+								class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-700 border-4 border-gray-900"
+							></div>
+							<div class="flex items-center gap-3 mb-2">
+								<h3 class="text-xl font-bold text-gray-400">
+									v2.3
+								</h3>
+								<span class="text-sm text-gray-500"
+									>Dec 2025</span
+								>
+							</div>
+							<ul
+								class="list-disc list-outside text-gray-400 text-sm space-y-1 ml-4"
+							>
+								<li>
+									<strong>Generic Syntax:</strong> Added SQL
+									Standard compatibility.
+								</li>
+								<li>
+									<strong>Operators:</strong> Added LIKE, IN,
+									BETWEEN support.
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
 
-            <!-- Footer -->
-            <footer class="mt-24 py-8 border-t border-white/5">
-                <div class="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-                    <div class="mb-4 md:mb-0">
-                        &copy; 2026 SawitDB Core Team.
-                    </div>
-                    <div class="flex space-x-6 items-center">
-                        <span class="text-xs">Support Us:</span>
-                        <a href="https://trakteer.id/wowoengine" target="_blank"
-                            class="text-gray-500 hover:text-pink-500 transition-colors" title="Traktir Kami">
-                            <i class="fa-solid fa-heart text-lg"></i>
-                        </a>
-                        <a href="https://github.com/WowoEngine/SawitDB" class="hover:text-white transition-colors"><i
-                                class="fab fa-github text-lg"></i></a>
-                    </div>
-                </div>
-            </footer>
+				<!-- Footer -->
+				<footer class="mt-24 py-8 border-t border-white/5">
+					<div
+						class="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm"
+					>
+						<div class="mb-4 md:mb-0">
+							&copy; 2026 SawitDB Core Team.
+						</div>
+						<div class="flex space-x-6 items-center">
+							<span class="text-xs">Support Us:</span>
+							<a
+								href="https://trakteer.id/wowoengine"
+								target="_blank"
+								class="text-gray-500 hover:text-pink-500 transition-colors"
+								title="Traktir Kami"
+							>
+								<i class="fa-solid fa-heart text-lg"></i>
+							</a>
+							<a
+								href="https://github.com/WowoEngine/SawitDB"
+								class="hover:text-white transition-colors"
+								><i class="fab fa-github text-lg"></i
+							></a>
+						</div>
+					</div>
+				</footer>
+			</main>
+		</div>
 
-        </main>
-    </div>
+		<!-- Mobile Menu Script -->
+		<!-- Mobile Menu Script -->
+		<script>
+			// --- Mobile Menu Logic ---
+			const btn = document.getElementById("mobile-menu-btn");
+			const menu = document.getElementById("navbar-default");
 
-    <!-- Mobile Menu Script -->
-    <!-- Mobile Menu Script -->
-    <script>
-        // --- Mobile Menu Logic ---
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('navbar-default');
+			if (btn && menu) {
+				btn.addEventListener("click", () => {
+					menu.classList.toggle("hidden");
+				});
 
-        if (btn && menu) {
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-            });
-
-            // Close mobile menu when a link is clicked
-            const menuLinks = menu.querySelectorAll('a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (!menu.classList.contains('hidden')) {
-                        menu.classList.add('hidden');
-                    }
-                });
-            });
-        }
-    </script>
-</body>
-
+				// Close mobile menu when a link is clicked
+				const menuLinks = menu.querySelectorAll("a");
+				menuLinks.forEach((link) => {
+					link.addEventListener("click", () => {
+						if (!menu.classList.contains("hidden")) {
+							menu.classList.add("hidden");
+						}
+					});
+				});
+			}
+		</script>
+	</body>
 </html>

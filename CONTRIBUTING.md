@@ -12,12 +12,15 @@ Bersikaplah sopan, saling menghargai, dan konstruktif. Kita di sini untuk memban
 ## Cara Berkontribusi
 
 ### 1. Laporkan Bug (Lapor Pak!)
+
 Jika menemukan masalah, silakan buat **Issue** baru. Sertakan:
+
 - Langkah-langkah untuk mereproduksi (Steps to reproduce).
 - Apa yang diharapkan vs apa yang terjadi.
 - Versi Node.js dan OS Anda.
 
 ### 2. Request Fitur (Aspirasi Rakyat)
+
 Punya ide "Infrastruktur Langit" yang masuk akal? Buat issue dengan label `enhancement`. Jelaskan kenapa fitur ini berguna bagi kemaslahatan umat.
 
 ### 3. Pull Requests (Kerja Nyata)
@@ -40,4 +43,4 @@ Dengan berkontribusi, Anda setuju kode Anda dirilis di bawah lisensi **MIT**.
 
 ---
 
-*Mari wujudkan kedaulatan data nasional!* 🇮🇩
+_Mari wujudkan kedaulatan data nasional!_ 🇮🇩
