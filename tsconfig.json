@@ -1,0 +1,50 @@
+{
+	// Visit https://aka.ms/tsconfig to read more about this file
+	"compilerOptions": {
+		"rootDir": "./",
+		"outDir": "./dist",
+
+		// Environment Settings
+		// See also https://aka.ms/tsconfig/module
+		"module": "nodenext",
+		"types": ["node"],
+
+		// Other Outputs
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+
+		// Stricter Typechecking Options
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true,
+
+		// Style Options
+		// "noImplicitReturns": true,
+		// "noImplicitOverride": true,
+		// "noUnusedLocals": true,
+		// "noUnusedParameters": true,
+		// "noFallthroughCasesInSwitch": true,
+		// "noPropertyAccessFromIndexSignature": true,
+
+		// Recommended Options
+		"verbatimModuleSyntax": true,
+		"noUncheckedSideEffectImports": true,
+		"moduleDetection": "force",
+		"skipLibCheck": true,
+
+		"esModuleInterop": true,
+		"target": "es2022",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"strict": true,
+		"noImplicitOverride": true,
+		/* Node stuff */
+		"allowImportingTsExtensions": true,
+		"rewriteRelativeImportExtensions": true,
+		/* AND if you're building for a library: */
+		/* If your code doesn't run in the DOM: */
+		"lib": ["es2022"]
+	},
+	"include": ["**/*.ts"],
+	"exclude": ["node_modules", "dist"]
+}

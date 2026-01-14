@@ -1,19 +1,26 @@
-const net = require("net");
-const path = require("path");
-const fs = require("fs");
+import net from "node:net";
+import path from "node:path";
+import url from "node:url";
+import cluster from "node:cluster";
 
-// Modular Components
-const AuthManager = require("./server/auth/AuthManager");
-const DatabaseRegistry = require("./server/DatabaseRegistry");
-const RequestRouter = require("./server/router/RequestRouter");
-const ClientSession = require("./server/session/ClientSession");
+import AuthManager from "./server/auth/AuthManager.js";
+import DatabaseRegistry from "./server/DatabaseRegistry.js";
+import RequestRouter from "./server/router/RequestRouter.js";
+import ClientSession from "./server/session/ClientSession.js";
+
+// NOTE: since we can't use macro in TS (tbf there's macro-ts but i dont want to
+// complicate it), and i cant lazily load this so that it executes only on this
+// file and only when it's used, we ought to define this at the top in every
+// files that needs it
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 /**
  * SawitDB Server - Network Database Server
  * Supports sawitdb:// protocol connections
  * Refactored to use modular components.
  */
-class SawitServer {
+export default class SawitServer {
 	constructor(config = {}) {
 		// Configuration
 		this.port = this.validatePort(config.port || 7878);
@@ -75,7 +82,6 @@ class SawitServer {
 		);
 
 		this.server.listen(this.port, this.host, () => {
-			const cluster = require("cluster");
 			const prefix = cluster.isWorker
 				? `[Worker ${cluster.worker.id}]`
 				: "[Server]";
@@ -243,10 +249,9 @@ class SawitServer {
 	}
 }
 
-module.exports = SawitServer;
-
 // Allow running as standalone server
-if (require.main === module) {
-	const ClusterManager = require("./modules/ClusterManager");
-	ClusterManager.start(SawitServer);
-}
+// XXX: do we really need this?
+// if (require.main === module) {
+// 	const ClusterManager = require("./modules/ClusterManager");
+// 	ClusterManager.start(SawitServer);
+// }

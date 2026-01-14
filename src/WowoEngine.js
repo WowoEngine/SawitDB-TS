@@ -20,7 +20,7 @@ const AggregateExecutor = require("./services/executors/AggregateExecutor");
  * SawitDB implements the Logic over the Pager
  * Refactored to use modular services and executors.
  */
-class SawitDB {
+export default class SawitDB {
 	constructor(filePath, options = {}) {
 		// WAL: Optional crash safety (backward compatible - disabled by default)
 		this.wal = options.wal ? new WAL(filePath, options.wal) : null;
@@ -492,5 +492,3 @@ class SawitDB {
 		return plan;
 	}
 }
-
-module.exports = SawitDB;
