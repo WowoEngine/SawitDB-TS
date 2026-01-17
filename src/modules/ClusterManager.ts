@@ -1,8 +1,8 @@
-const cluster = require("cluster");
-const os = require("os");
-const path = require("path");
+import cluster from "node:cluster";
+import os from "node:os"
+import path from "node:path";
 
-class ClusterManager {
+export default class ClusterManager {
 	static start(ServerClass) {
 		// Parse configuration
 		const port = process.env.SAWIT_PORT || 7878;
@@ -83,5 +83,3 @@ class ClusterManager {
 		process.on("SIGTERM", shutdown);
 	}
 }
-
-module.exports = ClusterManager;

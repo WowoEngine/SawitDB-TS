@@ -1,8 +1,7 @@
-const termObj = require("../QueryExecutor");
-const QueryExecutor = require("../QueryExecutor");
-const Pager = require("../../modules/Pager"); // Adjust path to modules/Pager
+import QueryExecutor from "../QueryExecutor.ts";
+import Pager from "../../modules/Pager.ts";
 
-class InsertExecutor extends QueryExecutor {
+export default class InsertExecutor extends QueryExecutor {
 	constructor(db) {
 		super(db);
 	}
@@ -115,5 +114,3 @@ class InsertExecutor extends QueryExecutor {
 		return `${dataArray.length} bibit tertanam.`;
 	}
 }
-
-module.exports = InsertExecutor;

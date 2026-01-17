@@ -1,70 +1,81 @@
 {
 	"name": "@wowoengine/sawitdb",
-	"publishConfig": {
-		"access": "public"
-	},
 	"version": "2.6.0",
 	"description": "A high-performance hybrid paged database with Agricultural Query Language (AQL) and Generic SQL support. Features single-file storage (.sawit), object caching, worker-thread parallelism, and crash recovery.",
-	"main": "src/WowoEngine.js",
-	"scripts": {
-		"format": "prettier . -w",
-		"start": "node bin/sawit-server.js",
-		"start:cluster": "set SAWIT_CLUSTER_MODE=true && node bin/sawit-server.js",
-		"server": "node bin/sawit-server.js",
-		"test": "node cli/test.js",
-		"example": "node examples/example_client.js",
-		"cli": "node cli/remote.js sawitdb://localhost:7878/default",
-		"dev": "set SAWIT_LOG_LEVEL=debug && node bin/sawit-server.js",
-		"bench": "node cli/benchmark.js --spawn --workers=1 --clients=1",
-		"bench:cluster": "node cli/benchmark.js --spawn --cluster --workers=4 --clients=10"
-	},
 	"keywords": [
-		"database",
-		"database-engine",
-		"database-server",
-		"database-client",
-		"database-remote",
-		"database-local",
-		"database-embedded",
-		"database-single-file",
-		"database-binary",
-		"database-file",
-		"sawitdb",
-		"wowoengine",
-		"wowoengine/sawitdb",
-		"document-database",
-		"nosql",
-		"json",
-		"btree",
-		"indexing",
-		"tcp-server",
-		"networking",
 		"agricultural",
+		"btree",
+		"database",
+		"database-binary",
+		"database-client",
+		"database-embedded",
+		"database-engine",
+		"database-file",
+		"database-local",
+		"database-remote",
+		"database-server",
+		"database-single-file",
+		"document-database",
+		"effect",
+		"embedded-database",
+		"indexing",
 		"indonesian",
+		"json",
 		"mongodb-like",
-		"embedded-database"
+		"networking",
+		"nosql",
+		"sawitdb",
+		"tcp-server",
+		"wowoengine",
+		"wowoengine/sawitdb"
 	],
-	"author": "SawitDB Community",
 	"license": "MIT",
+	"author": "SawitDB Community",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/WowoEngine/SawitDB.git"
 	},
-	"engines": {
-		"node": ">=12.0.0"
-	},
 	"bin": {
-		"sawitdb-server": "bin/sawit-server.js",
-		"sawitdb-cli": "cli/remote.js"
+		"sawitdb-cli": "cli/remote.js",
+		"sawitdb-server": "bin/sawit-server.js"
 	},
 	"files": [
-		"src/",
+		"README.md",
 		"bin/",
 		"cli/",
 		"docs/",
-		"README.md"
+		"src/"
 	],
+	"main": "src/WowoEngine.js",
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"fmt": "oxfmt",
+		"fmt:check": "oxfmt --check",
+		"start": "node dist/sawit-server.js",
+		"start:cluster": "set SAWIT_CLUSTER_MODE=true && node dist/sawit-server.js",
+		"server": "node bin/sawit-server.js",
+		"test": "node dist/test.js",
+		"example": "node examples/example_client.js",
+		"cli": "node dist/remote.js sawitdb://localhost:7878/default",
+		"dev": "set SAWIT_LOG_LEVEL=debug && node dist/sawit-server.js",
+		"bench": "node dist/benchmark.js --spawn --workers=1 --clients=1",
+		"bench:cluster": "node dist/benchmark.js --spawn --cluster --workers=4 --clients=10",
+		"lint": "tsc --noEmit",
+		"build": "swc --ignore node_modules/,dist/, --only **/*.ts,**/*.js . -d dist --copy-files --strip-leading-paths",
+		"build:watch": "swc --ignore node_modules/,dist/ --only **/*.ts,**/*.js --watch . -d dist --copy-files --strip-leading-paths",
+		"clean": "rm -rf dist"
+	},
 	"devDependencies": {
-		"prettier": "^3.7.4"
+		"@swc/cli": "^0.7.10",
+		"@swc/core": "^1.15.8",
+		"@types/node": "^25.0.9",
+		"chokidar": "^4.0.3",
+		"oxfmt": "^0.24.0",
+		"typescript": "^5.9.3"
+	},
+	"engines": {
+		"node": ">=12.0.0"
 	}
 }

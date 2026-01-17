@@ -1,5 +1,5 @@
-const { parentPort, workerData, threadId } = require("worker_threads");
-const SawitDB = require("./WowoEngine");
+import { parentPort, workerData, threadId } from "node:worker_threads";
+import SawitDB from "./WowoEngine.ts";
 
 // Cache of DB instances: { [absolutePath]: SawitDB }
 // NOTE: Since threads map to "Database Engines", they must be careful about FILE LOCKING.

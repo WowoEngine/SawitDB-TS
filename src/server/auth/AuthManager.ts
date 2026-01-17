@@ -1,6 +1,6 @@
-const crypto = require("crypto");
+import crypto from "node:crypto"
 
-class AuthManager {
+export default class AuthManager {
 	constructor(server) {
 		this.server = server;
 		this.authConfig = server.config.auth || null;
@@ -88,5 +88,3 @@ class AuthManager {
 		}
 	}
 }
-
-module.exports = AuthManager;

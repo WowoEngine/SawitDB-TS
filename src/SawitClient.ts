@@ -1,11 +1,11 @@
-const net = require("net");
-const { URL } = require("url");
+import net from "node:net";
+import { URL } from "node:url";
 
 /**
  * SawitDB Client - Connect to SawitDB Server
  * Usage: sawitdb://[username:password@]host:port/database
  */
-class SawitClient {
+export default class SawitClient {
 	constructor(connectionString) {
 		this.connectionString = connectionString;
 		this.socket = null;
@@ -295,5 +295,3 @@ class SawitClient {
 		}
 	}
 }
-
-module.exports = SawitClient;

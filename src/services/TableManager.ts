@@ -1,6 +1,6 @@
-const Pager = require("../modules/Pager"); // Assuming module structure is maintained
+import Pager from "../modules/Pager.ts";
 
-class TableManager {
+export default class TableManager {
 	constructor(db) {
 		this.db = db;
 		this.pager = db.pager;
@@ -178,5 +178,3 @@ class TableManager {
 		this.pager.writePage(0, p0);
 	}
 }
-
-module.exports = TableManager;

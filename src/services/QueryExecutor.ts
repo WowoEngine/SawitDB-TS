@@ -1,4 +1,4 @@
-class QueryExecutor {
+export default class QueryExecutor {
 	constructor(db) {
 		this.db = db;
 	}
@@ -7,5 +7,3 @@ class QueryExecutor {
 		throw new Error("Method 'execute' must be implemented");
 	}
 }
-
-module.exports = QueryExecutor;

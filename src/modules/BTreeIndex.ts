@@ -11,7 +11,7 @@ class BTreeNode {
 	}
 }
 
-class BTreeIndex {
+export default class BTreeIndex {
 	constructor(order = 32) {
 		this.order = order; // Maximum number of keys per node
 		this.root = new BTreeNode(true);
@@ -99,7 +99,7 @@ class BTreeIndex {
 				// This indicates tree corruption or logic error.
 				// In a correct B-Tree, children count = keys count + 1.
 				// If i > keys.length, it should be the last child.
-				/* 
+				/*
                    Example: Keys [10, 20]
                    Children: [ <10, 10-20, >20 ]
                    i=0 (key<10), i=1 (10<key<20), i=2 (key>20)
@@ -355,5 +355,3 @@ class BTreeIndex {
 		this.root = new BTreeNode(true);
 	}
 }
-
-module.exports = BTreeIndex;

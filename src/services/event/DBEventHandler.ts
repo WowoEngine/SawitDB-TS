@@ -1,9 +1,8 @@
-const DBEvent = require("./DBEvent");
-
+import DBEvent from "./DBEvent.ts";
 /**
  * @implements {DBEvent}
  */
-class DBEventHandler extends DBEvent {
+export default class DBEventHandler extends DBEvent {
 	constructor() {
 		super();
 	}
@@ -34,5 +33,3 @@ class DBEventHandler extends DBEvent {
 		if (this.adapter == "cpo") this.writeCDC(aql);
 	}
 }
-
-module.exports = DBEventHandler;

@@ -1,6 +1,6 @@
-const BTreeIndex = require("../modules/BTreeIndex");
+import BTreeIndex from "../modules/BTreeIndex.ts";
 
-class IndexManager {
+export default class IndexManager {
 	constructor(db) {
 		this.db = db;
 		// Indexes are stored in db.indexes for now to maintain state
@@ -190,5 +190,3 @@ class IndexManager {
 		}
 	}
 }
-
-module.exports = IndexManager;

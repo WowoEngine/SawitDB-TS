@@ -1,0 +1,40 @@
+{
+	// Visit https://aka.ms/tsconfig to read more about this file
+	"compilerOptions": {
+		"rootDir": "./",
+		"outDir": "./dist",
+
+		"module": "esnext",
+		"types": ["node"],
+		"moduleResolution": "bundler",
+
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true,
+
+		"verbatimModuleSyntax": true,
+		"noUncheckedSideEffectImports": true,
+		"moduleDetection": "force",
+		"skipLibCheck": true,
+
+		"esModuleInterop": true,
+		"target": "ES2022",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"strict": true,
+		"noImplicitOverride": true,
+		"rewriteRelativeImportExtensions": true,
+		"lib": ["es2022"]
+	},
+	"include": ["**/*.ts"],
+	"exclude": ["node_modules", "dist"],
+	"module": {
+		"resolveFully": true
+	}
+}

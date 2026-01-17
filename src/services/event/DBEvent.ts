@@ -8,7 +8,7 @@
  * @property {() => void} OnTableDropped(table, data, aql)
  */
 
-class DBEvent {
+export default class DBEvent {
 	/**
 	 * @param {Object} options
 	 */
@@ -57,5 +57,3 @@ class DBEvent {
 	 */
 	OnTableDropped(table, tableObj, aql) {}
 }
-
-module.exports = DBEvent;

@@ -1,5 +1,5 @@
-const SawitDB = require("../src/WowoEngine");
-const SawitClient = require("../src/SawitClient");
+import SawitDB from "../src/WowoEngine.js";
+import SawitClient from "../src/SawitClient.js";
 const fs = require("fs");
 const path = require("path");
 

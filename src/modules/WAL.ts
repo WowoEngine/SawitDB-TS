@@ -1,11 +1,10 @@
-const fs = require("fs");
-const crypto = require("crypto");
+import fs from "node:fs"
 
 /**
  * Write-Ahead Logging (WAL) for SawitDB - OPTIMIZED VERSION
  * Redis-level performance with crash safety
  */
-class WAL {
+export default class WAL {
 	constructor(dbPath, options = {}) {
 		this.dbPath = dbPath;
 		this.walPath = `${dbPath}.wal`;
@@ -367,4 +366,3 @@ class WAL {
 	}
 }
 
-module.exports = WAL;

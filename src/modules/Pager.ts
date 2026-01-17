@@ -1,13 +1,13 @@
-const fs = require("fs");
+import fs from "node:fs";
 
-const PAGE_SIZE = 4096;
+export const PAGE_SIZE = 4096;
 const MAGIC = "WOWO";
 
 /**
  * Pager handles 4KB page I/O
  * Includes simple LRU Cache
  */
-class Pager {
+export default class Pager {
 	constructor(filePath, wal = null) {
 		this.filePath = filePath;
 		this.fd = null;
@@ -280,7 +280,3 @@ class Pager {
 		}
 	}
 }
-
-Pager.PAGE_SIZE = PAGE_SIZE;
-
-module.exports = Pager;

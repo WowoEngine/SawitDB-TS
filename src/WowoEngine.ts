@@ -1,26 +1,26 @@
-const Pager = require("./modules/Pager");
-const QueryParser = require("./modules/QueryParser");
-const WAL = require("./modules/WAL");
-const DBEventHandler = require("./services/event/DBEventHandler");
-const DBEvent = require("./services/event/DBEvent");
+import Pager from "./modules/Pager.ts";
+import QueryParser from "./modules/QueryParser.ts";
+import WAL from "./modules/WAL.ts";
+import DBEventHandler from "./services/event/DBEventHandler.ts";
+import DBEvent from "./services/event/DBEvent.ts";
 
 // Services
-const TableManager = require("./services/TableManager");
-const IndexManager = require("./services/IndexManager");
-const ConditionEvaluator = require("./services/logic/ConditionEvaluator");
+import TableManager from "./services/TableManager.ts";
+import IndexManager from "./services/IndexManager.ts";
+import ConditionEvaluator from "./services/logic/ConditionEvaluator.ts";
 
 // Executors
-const SelectExecutor = require("./services/executors/SelectExecutor");
-const InsertExecutor = require("./services/executors/InsertExecutor");
-const DeleteExecutor = require("./services/executors/DeleteExecutor");
-const UpdateExecutor = require("./services/executors/UpdateExecutor");
-const AggregateExecutor = require("./services/executors/AggregateExecutor");
+import SelectExecutor from "./services/executors/SelectExecutor.ts";
+import InsertExecutor from "./services/executors/InsertExecutor.ts";
+import DeleteExecutor from "./services/executors/DeleteExecutor.ts";
+import UpdateExecutor from "./services/executors/UpdateExecutor.ts";
+import AggregateExecutor from "./services/executors/AggregateExecutor.ts";
 
 /**
  * SawitDB implements the Logic over the Pager
  * Refactored to use modular services and executors.
  */
-class SawitDB {
+export default class SawitDB {
 	constructor(filePath, options = {}) {
 		// WAL: Optional crash safety (backward compatible - disabled by default)
 		this.wal = options.wal ? new WAL(filePath, options.wal) : null;
@@ -492,5 +492,3 @@ class SawitDB {
 		return plan;
 	}
 }
-
-module.exports = SawitDB;

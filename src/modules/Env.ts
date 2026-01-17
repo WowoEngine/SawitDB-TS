@@ -1,7 +1,10 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "node:fs";
+import path from "node:path";
+import url from "node:url";
 
-class Env {
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+
+export class Env {
 	LoadEnv(file = ".env") {
 		console.log(path.join(__dirname, file));
 		const envPath = path.resolve(process.cwd(), path.join(__dirname, file));
@@ -29,4 +32,6 @@ class Env {
 	}
 }
 
-module.exports = new Env();
+// XXX: should we really do this?
+const env = new Env();
+export default env;

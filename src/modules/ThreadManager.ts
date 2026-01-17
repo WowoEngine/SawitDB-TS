@@ -1,14 +1,9 @@
-const {
-	Worker,
-	isMainThread,
-	parentPort,
-	workerData,
-} = require("worker_threads");
-const net = require("net");
-const os = require("os");
-const path = require("path");
+import { Worker, isMainThread, parentPort, workerData } from "node:worker_threads";
 
-class ThreadManager {
+import net from "node:net"
+import os from 'node:os'
+
+export default class ThreadManager {
 	static start(serverScriptPath) {
 		if (isMainThread) {
 			this._startMain(serverScriptPath);
@@ -92,5 +87,3 @@ class ThreadManager {
 		process.on("SIGTERM", shutdown);
 	}
 }
-
-module.exports = ThreadManager;

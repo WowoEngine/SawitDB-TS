@@ -1,8 +1,7 @@
-const termObj = require("../QueryExecutor");
-const QueryExecutor = require("../QueryExecutor");
-const ConditionEvaluator = require("../logic/ConditionEvaluator");
+import QueryExecutor from "../QueryExecutor.ts";
+import ConditionEvaluator from "../logic/ConditionEvaluator.ts";
 
-class DeleteExecutor extends QueryExecutor {
+export default class DeleteExecutor extends QueryExecutor {
 	constructor(db) {
 		super(db);
 		this.conditionEvaluator = new ConditionEvaluator();
@@ -149,5 +148,3 @@ class DeleteExecutor extends QueryExecutor {
 		return `Berhasil menggusur ${deletedCount} bibit.`;
 	}
 }
-
-module.exports = DeleteExecutor;

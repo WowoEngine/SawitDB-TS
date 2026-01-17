@@ -13,8 +13,11 @@
  *   SAWIT_AUTH - Enable authentication (format: username:password)
  */
 
-const SawitServer = require("../src/SawitServer");
-const path = require("path");
+import SawitServer from "../src/SawitServer.ts";
+import path from "node:path";
+import url from "node:url";
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 // Parse configuration
 const config = {
