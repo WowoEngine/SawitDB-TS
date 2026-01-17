@@ -1,4 +1,4 @@
-import Pager from "../modules/Pager";
+import Pager from "../modules/Pager.ts";
 
 export default class TableManager {
 	constructor(db) {

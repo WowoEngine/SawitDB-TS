@@ -1,10 +1,9 @@
 {
   "$schema": "https://swc.rs/schema.json",
   "module": {
-    "type": "commonjs",
- 
+    "type": "es6",
     "strict": true,
-    "strictMode": true,
+    "strictMode": false,
     "lazy": true,
     "noInterop": false,
     "preserveImportMeta": true

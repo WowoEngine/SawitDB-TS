@@ -1,5 +1,5 @@
-import QueryExecutor from "../QueryExecutor";
-import ConditionEvaluator from "../logic/ConditionEvaluator";
+import QueryExecutor from "../QueryExecutor.ts";
+import ConditionEvaluator from "../logic/ConditionEvaluator.ts";
 
 export default class DeleteExecutor extends QueryExecutor {
 	constructor(db) {

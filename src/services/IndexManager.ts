@@ -1,4 +1,4 @@
-import BTreeIndex from "../modules/BTreeIndex";
+import BTreeIndex from "../modules/BTreeIndex.ts";
 
 export default class IndexManager {
 	constructor(db) {

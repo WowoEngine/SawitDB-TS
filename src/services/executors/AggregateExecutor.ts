@@ -1,5 +1,5 @@
-import QueryExecutor from "../QueryExecutor";
-import SelectExecutor from "./SelectExecutor";
+import QueryExecutor from "../QueryExecutor.ts";
+import SelectExecutor from "./SelectExecutor.ts";
 
 export default class AggregateExecutor extends QueryExecutor {
 	constructor(db) {

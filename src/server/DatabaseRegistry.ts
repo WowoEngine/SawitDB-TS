@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import path from "node:path"
-import SawitDB from "../WowoEngine";
+import SawitDB from "../WowoEngine.ts";
 
 export default class DatabaseRegistry {
 	constructor(dataDir, config) {

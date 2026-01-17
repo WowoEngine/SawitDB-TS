@@ -1,4 +1,4 @@
-import DBEvent from "./DBEvent";
+import DBEvent from "./DBEvent.ts";
 /**
  * @implements {DBEvent}
  */

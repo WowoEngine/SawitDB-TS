@@ -1,6 +1,6 @@
-import QueryExecutor from "../QueryExecutor";
-import JoinProcessor from "../logic/JoinProcessor";
-import ConditionEvaluator from "../logic/ConditionEvaluator";
+import QueryExecutor from "../QueryExecutor.ts";
+import JoinProcessor from "../logic/JoinProcessor.ts";
+import ConditionEvaluator from "../logic/ConditionEvaluator.ts";
 
 export default class SelectExecutor extends QueryExecutor {
 	constructor(db) {

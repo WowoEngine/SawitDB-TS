@@ -13,7 +13,7 @@
  *   SAWIT_AUTH - Enable authentication (format: username:password)
  */
 
-import SawitServer from "../src/SawitServer";
+import SawitServer from "../src/SawitServer.ts";
 import path from "node:path";
 import url from "node:url";
 

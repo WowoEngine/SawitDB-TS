@@ -1,5 +1,5 @@
-import QueryExecutor from "../QueryExecutor";
-import Pager from "../../modules/Pager";
+import QueryExecutor from "../QueryExecutor.ts";
+import Pager from "../../modules/Pager.ts";
 
 export default class InsertExecutor extends QueryExecutor {
 	constructor(db) {

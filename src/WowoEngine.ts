@@ -1,20 +1,20 @@
-import Pager from "./modules/Pager";
-import QueryParser from "./modules/QueryParser";
-import WAL from "./modules/WAL";
-import DBEventHandler from "./services/event/DBEventHandler";
-import DBEvent from "./services/event/DBEvent";
+import Pager from "./modules/Pager.ts";
+import QueryParser from "./modules/QueryParser.ts";
+import WAL from "./modules/WAL.ts";
+import DBEventHandler from "./services/event/DBEventHandler.ts";
+import DBEvent from "./services/event/DBEvent.ts";
 
 // Services
-import TableManager from "./services/TableManager";
-import IndexManager from "./services/IndexManager";
-import ConditionEvaluator from "./services/logic/ConditionEvaluator";
+import TableManager from "./services/TableManager.ts";
+import IndexManager from "./services/IndexManager.ts";
+import ConditionEvaluator from "./services/logic/ConditionEvaluator.ts";
 
 // Executors
-import SelectExecutor from "./services/executors/SelectExecutor";
-import InsertExecutor from "./services/executors/InsertExecutor";
-import DeleteExecutor from "./services/executors/DeleteExecutor";
-import UpdateExecutor from "./services/executors/UpdateExecutor";
-import AggregateExecutor from "./services/executors/AggregateExecutor";
+import SelectExecutor from "./services/executors/SelectExecutor.ts";
+import InsertExecutor from "./services/executors/InsertExecutor.ts";
+import DeleteExecutor from "./services/executors/DeleteExecutor.ts";
+import UpdateExecutor from "./services/executors/UpdateExecutor.ts";
+import AggregateExecutor from "./services/executors/AggregateExecutor.ts";
 
 /**
  * SawitDB implements the Logic over the Pager
