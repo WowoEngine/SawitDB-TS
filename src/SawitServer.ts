@@ -3,10 +3,10 @@ import path from "node:path";
 import url from "node:url";
 import cluster from "node:cluster";
 
-import AuthManager from "./server/auth/AuthManager.js";
-import DatabaseRegistry from "./server/DatabaseRegistry.js";
-import RequestRouter from "./server/router/RequestRouter.js";
-import ClientSession from "./server/session/ClientSession.js";
+import AuthManager from "./server/auth/AuthManager";
+import DatabaseRegistry from "./server/DatabaseRegistry";
+import RequestRouter from "./server/router/RequestRouter";
+import ClientSession from "./server/session/ClientSession";
 
 // NOTE: since we can't use macro in TS (tbf there's macro-ts but i dont want to
 // complicate it), and i cant lazily load this so that it executes only on this

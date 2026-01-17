@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const SawitDB = require("../WowoEngine");
 
-class DatabaseRegistry {
+export default class DatabaseRegistry {
 	constructor(dataDir, config) {
 		this.dataDir = dataDir;
 		this.config = config;
@@ -94,5 +94,3 @@ class DatabaseRegistry {
 		this.databases.clear();
 	}
 }
-
-module.exports = DatabaseRegistry;

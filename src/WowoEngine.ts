@@ -1,20 +1,20 @@
-const Pager = require("./modules/Pager");
-const QueryParser = require("./modules/QueryParser");
-const WAL = require("./modules/WAL");
-const DBEventHandler = require("./services/event/DBEventHandler");
-const DBEvent = require("./services/event/DBEvent");
+import Pager from "./modules/Pager";
+import QueryParser from "./modules/QueryParser";
+import WAL from "./modules/WAL";
+import DBEventHandler from "./services/event/DBEventHandler";
+import DBEvent from "./services/event/DBEvent";
 
 // Services
-const TableManager = require("./services/TableManager");
-const IndexManager = require("./services/IndexManager");
-const ConditionEvaluator = require("./services/logic/ConditionEvaluator");
+import TableManager from "./services/TableManager";
+import IndexManager from "./services/IndexManager";
+import ConditionEvaluator from "./services/logic/ConditionEvaluator";
 
 // Executors
-const SelectExecutor = require("./services/executors/SelectExecutor");
-const InsertExecutor = require("./services/executors/InsertExecutor");
-const DeleteExecutor = require("./services/executors/DeleteExecutor");
-const UpdateExecutor = require("./services/executors/UpdateExecutor");
-const AggregateExecutor = require("./services/executors/AggregateExecutor");
+import SelectExecutor from "./services/executors/SelectExecutor";
+import InsertExecutor from "./services/executors/InsertExecutor";
+import DeleteExecutor from "./services/executors/DeleteExecutor";
+import UpdateExecutor from "./services/executors/UpdateExecutor";
+import AggregateExecutor from "./services/executors/AggregateExecutor";
 
 /**
  * SawitDB implements the Logic over the Pager
