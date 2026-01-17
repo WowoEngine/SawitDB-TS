@@ -3,7 +3,7 @@
  * Handles complex join logic (INNER, LEFT, RIGHT, FULL, CROSS)
  * Extracted from WowoEngine.js
  */
-class JoinProcessor {
+export default class JoinProcessor {
 	constructor(db) {
 		this.db = db; // Needs db for _scanTable and TableManager lookup
 	}
@@ -263,5 +263,3 @@ class JoinProcessor {
 		return currentRows;
 	}
 }
-
-module.exports = JoinProcessor;

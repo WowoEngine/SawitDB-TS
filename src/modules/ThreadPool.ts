@@ -1,8 +1,8 @@
-const { Worker } = require("worker_threads");
-const path = require("path");
-const os = require("os");
+import { Worker } from "node:worker_threads";
+import os from "node:os"
+import path from "node:path"
 
-class ThreadPool {
+export default class ThreadPool {
 	constructor(workerCount = 0) {
 		this.workerCount = workerCount || os.cpus().length;
 		this.workers = new Array(this.workerCount);
@@ -164,4 +164,3 @@ class ThreadPool {
 	}
 }
 
-module.exports = ThreadPool;

@@ -1,4 +1,4 @@
-class ClientSession {
+export default class ClientSession {
 	constructor(socket, clientId) {
 		this.socket = socket;
 		this.clientId = clientId;
@@ -15,5 +15,3 @@ class ClientSession {
 		this.currentDatabase = databaseName;
 	}
 }
-
-module.exports = ClientSession;

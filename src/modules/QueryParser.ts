@@ -2,7 +2,7 @@
  * QueryParser handles tokenizing and parsing SQL-like commands
  * Returns a Command Object: { type, table, data, criteria, ... }
  */
-class QueryParser {
+export default class QueryParser {
 	constructor() {}
 
 	tokenize(sql) {
@@ -983,5 +983,3 @@ class QueryParser {
 		return { type: "EXPLAIN", innerCommand };
 	}
 }
-
-module.exports = QueryParser;

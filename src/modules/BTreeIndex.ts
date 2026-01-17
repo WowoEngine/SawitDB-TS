@@ -11,7 +11,7 @@ class BTreeNode {
 	}
 }
 
-class BTreeIndex {
+export default class BTreeIndex {
 	constructor(order = 32) {
 		this.order = order; // Maximum number of keys per node
 		this.root = new BTreeNode(true);
@@ -355,5 +355,3 @@ class BTreeIndex {
 		this.root = new BTreeNode(true);
 	}
 }
-
-module.exports = BTreeIndex;

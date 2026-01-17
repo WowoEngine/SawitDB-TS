@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const SawitDB = require("../WowoEngine");
+import fs from "node:fs"
+import path from "node:path"
+import SawitDB from "../WowoEngine";
 
 export default class DatabaseRegistry {
 	constructor(dataDir, config) {

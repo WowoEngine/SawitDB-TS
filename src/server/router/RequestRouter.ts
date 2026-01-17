@@ -1,4 +1,4 @@
-class RequestRouter {
+export default class RequestRouter {
 	constructor(server) {
 		this.server = server;
 		this.dbRegistry = server.dbRegistry;
@@ -335,5 +335,3 @@ class RequestRouter {
 		});
 	}
 }
-
-module.exports = RequestRouter;

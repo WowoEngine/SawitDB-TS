@@ -1,8 +1,7 @@
-const getTermObj = require("../QueryExecutor");
-const QueryExecutor = require("../QueryExecutor");
-const SelectExecutor = require("./SelectExecutor");
+import QueryExecutor from "../QueryExecutor";
+import SelectExecutor from "./SelectExecutor";
 
-class AggregateExecutor extends QueryExecutor {
+export default class AggregateExecutor extends QueryExecutor {
 	constructor(db) {
 		super(db);
 		// Depends on SelectExecutor logic to get filtered rows
@@ -170,5 +169,3 @@ class AggregateExecutor extends QueryExecutor {
 		return results;
 	}
 }
-
-module.exports = AggregateExecutor;

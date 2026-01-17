@@ -1,8 +1,8 @@
-const QueryExecutor = require("../QueryExecutor");
-const JoinProcessor = require("../logic/JoinProcessor");
-const ConditionEvaluator = require("../logic/ConditionEvaluator");
+import QueryExecutor from "../QueryExecutor";
+import JoinProcessor from "../logic/JoinProcessor";
+import ConditionEvaluator from "../logic/ConditionEvaluator";
 
-class SelectExecutor extends QueryExecutor {
+export default class SelectExecutor extends QueryExecutor {
 	constructor(db) {
 		super(db);
 		this.joinProcessor = new JoinProcessor(db);
@@ -136,5 +136,3 @@ class SelectExecutor extends QueryExecutor {
 		return results;
 	}
 }
-
-module.exports = SelectExecutor;

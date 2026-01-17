@@ -3,7 +3,7 @@
  * Evaluates conditions against data objects
  * Extracted from WowoEngine.js
  */
-class ConditionEvaluator {
+export default class ConditionEvaluator {
 	constructor() {}
 
 	checkMatch(obj, criteria) {
@@ -81,4 +81,3 @@ class ConditionEvaluator {
 	}
 }
 
-module.exports = ConditionEvaluator;
