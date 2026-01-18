@@ -1,11 +1,11 @@
 {
-  "$schema": "https://swc.rs/schema.json",
-  "module": {
-    "type": "es6",
-    "strict": true,
-    "strictMode": false,
-    "lazy": true,
-    "noInterop": false,
-    "preserveImportMeta": true
-  }
+	"$schema": "https://swc.rs/schema.json",
+	"module": {
+		"type": "es6",
+		"strict": true,
+		"strictMode": false,
+		"lazy": true,
+		"noInterop": false,
+		"preserveImportMeta": true
+	}
 }

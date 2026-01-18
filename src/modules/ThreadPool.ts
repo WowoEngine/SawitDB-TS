@@ -1,6 +1,6 @@
 import { Worker } from "node:worker_threads";
-import os from "node:os"
-import path from "node:path"
+import os from "node:os";
+import path from "node:path";
 
 export default class ThreadPool {
 	constructor(workerCount = 0) {
@@ -163,4 +163,3 @@ export default class ThreadPool {
 		}));
 	}
 }
-
