@@ -11,14 +11,14 @@
 		"allowImportingTsExtensions": true,
 		"noEmit": true,
 
-		"sourceMap": true,
+		"sourceMap": false,
+		"declarationMap": false,
 		"declaration": true,
-		"declarationMap": true,
 
 		"noUncheckedIndexedAccess": true,
 		"exactOptionalPropertyTypes": true,
 
-		"verbatimModuleSyntax": true,
+		"verbatimModuleSyntax": false,
 		"noUncheckedSideEffectImports": true,
 		"moduleDetection": "force",
 		"skipLibCheck": true,

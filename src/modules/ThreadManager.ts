@@ -1,7 +1,12 @@
-import { Worker, isMainThread, parentPort, workerData } from "node:worker_threads";
+import {
+	Worker,
+	isMainThread,
+	parentPort,
+	workerData,
+} from "node:worker_threads";
 
-import net from "node:net"
-import os from 'node:os'
+import net from "node:net";
+import os from "node:os";
 
 export default class ThreadManager {
 	static start(serverScriptPath) {

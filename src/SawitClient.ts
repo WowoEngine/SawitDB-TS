@@ -1,25 +1,81 @@
 import net from "node:net";
 import { URL } from "node:url";
 
+type SawitDBResponseKind =
+	| "welcome"
+	| "auth_success"
+	| "use_success"
+	| "query_result"
+	| "error"
+	| "database_list"
+	| "drop_success"
+	| "pong"
+	| "stats";
+
+type SawitDBRequestKind =
+	| { type: "auth"; payload: { username: string; password: string } }
+	| { type: "use"; payload: { database: any } }
+	| { type: "query"; payload: { query: string; params: string[] } }
+	| { type: "list_databases"; payload: {} }
+	| { type: "ping"; payload: {} }
+	| { type: "stats"; payload: {} };
+
+interface SawitDBResponse {
+	type: SawitDBResponseKind;
+	message: string;
+	version: string;
+	error: string;
+	databases: any;
+	result: string;
+	stats: string;
+	timestamp: string;
+}
+
+interface SawitDBRequest {
+	id: number | string;
+	handler: (response: SawitDBResponse) => any;
+}
+
+
 /**
  * SawitDB Client - Connect to SawitDB Server
  * Usage: sawitdb://[username:password@]host:port/database
  */
 export default class SawitClient {
-	constructor(connectionString) {
+	private socket: net.Socket | null;
+	private connectionString: string;
+	private connected: boolean;
+	private authenticated: boolean;
+	private buffer: string;
+	private pendingRequests: SawitDBRequest[];
+	private requestId: number;
+	private host: string;
+	private port: number;
+	private currentDatabase: string | null;
+	private database: string | null;
+	private password: string | null;
+	private username: string | null;
+
+	constructor(connectionString: string) {
 		this.connectionString = connectionString;
 		this.socket = null;
 		this.connected = false;
 		this.authenticated = false;
 		this.currentDatabase = null;
 		this.buffer = "";
-		this.pendingRequests = [];
+		this.pendingRequests = [{ id: "", handler: () => null }];
 		this.requestId = 0;
+
+		this.host = "localhost";
+		this.port = 7878; // TODO: ganti ke tanggal lahir si wowo
+		this.database = null;
+		this.password = null;
+		this.username = null;
 
 		this.#parseConnectionString(connectionString);
 	}
 
-	#parseConnectionString(connStr) {
+	#parseConnectionString(connStr: string) {
 		// Parse sawitdb://[user:pass@]host:port/database
 		const url = connStr.replace("sawitdb://", "http://"); // Trick to use URL parser
 		const parsed = new URL(url);
@@ -59,7 +115,7 @@ export default class SawitClient {
 			});
 
 			// Wait for welcome message
-			const welcomeHandler = (response) => {
+			const welcomeHandler = (response: SawitDBResponse) => {
 				if (response.type === "welcome") {
 					console.log(
 						`[Client] ${response.message} v${response.version}`,
@@ -93,15 +149,15 @@ export default class SawitClient {
 				{
 					type: "auth",
 					payload: {
-						username: this.username,
-						password: this.password,
+						username: this.username!!,
+						password: this.password!!,
 					},
 				},
-				(response) => {
+				(response: SawitDBResponse) => {
 					if (response.type === "auth_success") {
 						this.authenticated = true;
 						console.log("[Client] Authenticated successfully");
-						resolve();
+						resolve(""); // XXX: what should this resolve??
 					} else if (response.type === "error") {
 						reject(new Error(response.error));
 					}
@@ -110,14 +166,14 @@ export default class SawitClient {
 		});
 	}
 
-	async use(database) {
+	async use(database: string) {
 		return new Promise((resolve, reject) => {
 			this.#sendRequest(
 				{
 					type: "use",
 					payload: { database },
 				},
-				(response) => {
+				(response: SawitDBResponse) => {
 					if (response.type === "use_success") {
 						this.currentDatabase = database;
 						console.log(`[Client] Using database '${database}'`);
@@ -132,7 +188,7 @@ export default class SawitClient {
 		});
 	}
 
-	async query(queryString, params = []) {
+	async query(queryString: string, params: string[] = []) {
 		if (!this.connected) {
 			throw new Error("Not connected to server");
 		}
@@ -146,7 +202,7 @@ export default class SawitClient {
 						params: params,
 					},
 				},
-				(response) => {
+				(response: SawitDBResponse) => {
 					if (response.type === "query_result") {
 						resolve(response.result);
 					} else if (response.type === "error") {
@@ -166,7 +222,7 @@ export default class SawitClient {
 					type: "list_databases",
 					payload: {},
 				},
-				(response) => {
+				(response: SawitDBResponse) => {
 					if (response.type === "database_list") {
 						resolve(response.databases);
 					} else if (response.type === "error") {
@@ -179,14 +235,14 @@ export default class SawitClient {
 		});
 	}
 
-	async dropDatabase(database) {
+	async dropDatabase(database: string) {
 		return new Promise((resolve, reject) => {
 			this.#sendRequest(
 				{
 					type: "drop_database",
 					payload: { database },
 				},
-				(response) => {
+				(response: SawitDBResponse) => {
 					if (response.type === "drop_success") {
 						if (this.currentDatabase === database) {
 							this.currentDatabase = null;
@@ -210,12 +266,12 @@ export default class SawitClient {
 					type: "ping",
 					payload: {},
 				},
-				(response) => {
+				(response: SawitDBResponse) => {
 					if (response.type === "pong") {
 						const latency = Date.now() - start;
 						resolve({ latency, serverTime: response.timestamp });
 					} else {
-						resolve(response);
+						reject(response);
 					}
 				},
 			);
@@ -229,7 +285,7 @@ export default class SawitClient {
 					type: "stats",
 					payload: {},
 				},
-				(response) => {
+				(response: SawitDBResponse) => {
 					if (response.type === "stats") {
 						resolve(response.stats);
 					} else if (response.type === "error") {
@@ -242,7 +298,11 @@ export default class SawitClient {
 		});
 	}
 
-	#sendRequest(request, callback) {
+	// XXX: WHAT THE FUCK
+	#sendRequest(
+		request: SawitDBRequestKind,
+		callback: (response: SawitDBResponse) => any,
+	) {
 		const id = ++this.requestId;
 		this.pendingRequests.push({ id, handler: callback });
 
@@ -278,9 +338,10 @@ export default class SawitClient {
 		}
 	}
 
-	#handleResponse(response) {
+	#handleResponse(response: SawitDBResponse) {
 		if (this.pendingRequests.length > 0) {
-			const request = this.pendingRequests.shift();
+			// BUG: possibly undefined
+			const request = this.pendingRequests.shift()!!;
 			if (request.handler) {
 				request.handler(response);
 			}

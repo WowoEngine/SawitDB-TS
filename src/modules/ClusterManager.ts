@@ -1,5 +1,5 @@
 import cluster from "node:cluster";
-import os from "node:os"
+import os from "node:os";
 import path from "node:path";
 
 export default class ClusterManager {

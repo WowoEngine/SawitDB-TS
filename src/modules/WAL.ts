@@ -1,4 +1,4 @@
-import fs from "node:fs"
+import fs from "node:fs";
 
 /**
  * Write-Ahead Logging (WAL) for SawitDB - OPTIMIZED VERSION
@@ -365,4 +365,3 @@ export default class WAL {
 		this.fd = null;
 	}
 }
-
