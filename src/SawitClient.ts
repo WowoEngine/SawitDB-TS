@@ -15,10 +15,10 @@ type SawitDBResponseKind =
 type SawitDBRequestKind =
 	| { type: "auth"; payload: { username: string; password: string } }
 	| { type: "use"; payload: { database: any } }
-	| { type: "query"; payload: { query: string, params: string[] } }
+	| { type: "query"; payload: { query: string; params: string[] } }
 	| { type: "list_databases"; payload: {} }
 	| { type: "ping"; payload: {} }
-	| { type: "stats"; payload: {} }
+	| { type: "stats"; payload: {} };
 
 interface SawitDBResponse {
 	type: SawitDBResponseKind;
@@ -35,6 +35,7 @@ interface SawitDBRequest {
 	id: number | string;
 	handler: (response: SawitDBResponse) => any;
 }
+
 
 /**
  * SawitDB Client - Connect to SawitDB Server

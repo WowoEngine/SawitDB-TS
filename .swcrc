@@ -1,11 +1,43 @@
 {
 	"$schema": "https://swc.rs/schema.json",
+	"jsc": {
+		"parser": {
+			"syntax": "typescript",
+			"tsx": false,
+			"dynamicImport": true,
+			"decorators": true
+		},
+		"target": "es2022",
+		"baseUrl": ".",
+		"externalHelpers": false,
+		"keepClassNames": true,
+		"preserveAllComments": true,
+
+		"experimental": {
+			"plugins": [
+				[
+					"@swc/plugin-transform-imports",
+					{
+						"^(.*?)(\\.ts)$": {
+							"skipDefaultConversion": true,
+							"preventFullImport": true,
+							"handleDefaultImport": true,
+							"handleNamespaceImport": true,
+							"transform": "{{matches.[1]}}.js"
+						}
+					}
+				]
+			]
+		}
+	},
 	"module": {
 		"type": "es6",
 		"strict": true,
-		"strictMode": false,
-		"lazy": true,
-		"noInterop": false,
+		"strictMode": true,
 		"preserveImportMeta": true
-	}
+	},
+
+	"minify": false,
+	"sourceMaps": false
+
 }
